@@ -6,7 +6,7 @@ let gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     paths = {
-      scripts: ['src/dq.js','src/**/*.js'],
+      scripts: ['src/collector.js','src/**/*.js'],
     };
 
 gulp.task('scripts', function () {

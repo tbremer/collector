@@ -12,4 +12,4 @@
       return (reg.test(cn));
     });
   });
-})(domQuery);
+})(collector);

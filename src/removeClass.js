@@ -11,4 +11,4 @@
 
     return this;
   });
-})(domQuery)
+})(collector)

@@ -1,5 +1,5 @@
 {
-  "name": "domquery",
+  "name": "collector",
   "version": "0.0.1",
   "description": "Super extendible, light weight implementation of jQuery / Zepto.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tbremer/domQuery.git"
+    "url": "git+https://github.com/tbremer/collector.git"
   },
   "keywords": [
     "jquery",
@@ -22,9 +22,9 @@
   "author": "Tom Bremer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tbremer/domQuery/issues"
+    "url": "https://github.com/tbremer/collector/issues"
   },
-  "homepage": "https://github.com/tbremer/domQuery#readme",
+  "homepage": "https://github.com/tbremer/collector#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",

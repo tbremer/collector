@@ -1,17 +1,17 @@
 (function() {
-  const domQuery = (function () {
+  const collector = (function () {
 
     function $(selector) {
       let collection = (!selector ? [] :
             (typeof selector === 'string') ? document.querySelectorAll(selector) :
-            (selector instanceof DQ) ? selector :
+            (selector instanceof CS) ? selector :
             (typeof selector === 'object' && (selector.nodeType === 1 || selector.nodeType === 9)) ? [selector] : [] ),
-          instance = new DQ(collection, selector);
+          instance = new CS(collection, selector);
 
       return instance;
     }
 
-    function DQ(collection, selector) {
+    function CS(collection, selector) {
       let i = 0,
           len = collection.length;
 
@@ -44,12 +44,12 @@
     };
 
     $.plugin = function (name, func) {
-      DQ.prototype[name] = func;
+      CS.prototype[name] = func;
     };
 
     return $;
   })();
 
-  window.$ === undefined && (window.$ = domQuery);
-  window.domQuery === undefined && (window.domQuery = domQuery);
+  window.$ === undefined && (window.$ = collector);
+  window.collector === undefined && (window.collector = collector);
 })();
