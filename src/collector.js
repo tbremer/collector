@@ -1,29 +1,25 @@
 (function() {
   const collector = (function () {
+    function CS(collection) {
+      let i = 0, len = collection.length;
+      for(; i < len; i++) {
+        this[i] = collection[i];
+      }
+      this.length = len;
+      this.splice = Array.prototype.splice;
+      this.each = Array.prototype.forEach;
+      this.indexOf = Array.prototype.indexOf;
+      this.some = Array.prototype.some;
+    }
 
     function $(selector) {
       let collection = (!selector ? [] :
             (typeof selector === 'string') ? document.querySelectorAll(selector) :
             (selector instanceof CS) ? selector :
-            (typeof selector === 'object' && (selector.nodeType === 1 || selector.nodeType === 9)) ? [selector] : [] ),
-          instance = new CS(collection, selector);
+            (typeof selector === 'object' && (selector.nodeType === 1 || selector.nodeType === 9)) ? [selector] :
+            (selector.constructor === Array) ? selector : [] );
 
-      return instance;
-    }
-
-    function CS(collection, selector) {
-      let i = 0,
-          len = collection.length;
-
-      for (;i<len;i++) {
-        this[i] = collection[i];
-      }
-
-      this.length = len;
-      this.splice = [].splice;
-      this.each = [].forEach;
-      this.indexOf = [].indexOf;
-      this.some = [].some;
+      return new CS(collection);
     }
 
     $.extend = function (obj) {
@@ -36,7 +32,7 @@
         obj = arguments[1];
       }
 
-      for(let i in obj) {
+      for(i in obj) {
         if(obj.hasOwnProperty(i)) {
           that[i] = obj[i];
         }
@@ -50,6 +46,6 @@
     return $;
   })();
 
-  window.$ === undefined && (window.$ = collector);
-  window.collector === undefined && (window.collector = collector);
+  if (window.$ === undefined) { window.$ = collector; }
+  if (window.collector === undefined) { window.collector = collector; }
 })();

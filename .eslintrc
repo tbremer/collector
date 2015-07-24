@@ -1,0 +1,39 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "classes": true,
+    "defaultParams": true,
+    "destructuring": true,
+    "forOf": true,
+    "generators": false,
+    "modules": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralDuplicateProperties": false,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "spread": true,
+    "superInFunctions": true,
+    "templateStrings": true,
+    "no-var": true,
+    "prefer-const": true
+  },
+  "rules": {
+    "quotes": [
+      0,
+      "single",
+      "avoid-escape"
+    ],
+    "comma-spacing": [
+      1,
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+  }
+}
