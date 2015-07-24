@@ -1,0 +1,34 @@
+{
+  "name": "domquery",
+  "version": "0.0.1",
+  "description": "Super extendible, light weight implementation of jQuery / Zepto.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbremer/domQuery.git"
+  },
+  "keywords": [
+    "jquery",
+    "zepto",
+    "browser",
+    "dom",
+    "traversal",
+    "traversal",
+    "query"
+  ],
+  "author": "Tom Bremer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tbremer/domQuery/issues"
+  },
+  "homepage": "https://github.com/tbremer/domQuery#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.2.0"
+  }
+}
