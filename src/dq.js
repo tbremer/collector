@@ -2,14 +2,15 @@
   const domQuery = (function () {
 
     function $(selector) {
-      let collection = ((typeof selector === 'string') ? document.querySelectorAll(selector) :
+      let collection = (!selector ? [] :
+            (typeof selector === 'string') ? document.querySelectorAll(selector) :
+            (selector instanceof DQ) ? selector :
             (typeof selector === 'object' && (selector.nodeType === 1 || selector.nodeType === 9)) ? [selector] : [] ),
           instance = new DQ(collection, selector);
 
       return instance;
     }
 
-    // This is our functional factory
     function DQ(collection, selector) {
       let i = 0,
           len = collection.length;
@@ -25,7 +26,6 @@
       this.some = [].some;
     }
 
-    // $.extend allows plugins to work on top of our existing base.
     $.extend = function (obj) {
       let that = this, i;
       if (arguments.length > 2) {
@@ -42,7 +42,7 @@
         }
       }
     };
-    // $.plugin and $.extend are very similar, however plugin applies only to nodes.
+
     $.plugin = function (name, func) {
       DQ.prototype[name] = func;
     };
