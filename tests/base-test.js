@@ -1,1 +1,1 @@
-var expect = chai.expect;
+let expect = chai.expect;

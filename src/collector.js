@@ -1,14 +1,14 @@
+//     CollectorJS
+//     http://collectorjs.com
+//     (c) 2015 Tom Bremer
+//     Collector may be freely distributed under the MIT license
+
 (function() {
-  // /**
-  //  * @const collector
-  //  * @description this is what gets bound to the window, it is our main function.
-  //  */
   const collector = (function () {
-    // /**
-    //  * @function CS
-    //  * @description this is our factory for binding any itteratable functions to.
-    //  * @arg {array|object}
-    //  */
+    // ###CS
+    // _this is our factory for binding any itteratable functions to._
+    //
+    // CS accepts strings, collections, arrays sent from the `$` function
     function CS(collection) {
       let i = 0, len = collection.length;
       for(; i < len; i++) {
