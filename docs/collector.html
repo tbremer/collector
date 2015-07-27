@@ -110,9 +110,6 @@ Collector may be freely distributed under the MIT license
 
       collection = !selector ? [] : <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span> ? _isSimpleID(selector) ? [<span class="hljs-built_in">document</span>.getElementById(cleanedSelector)] : _isSimpleClass(selector) ? <span class="hljs-built_in">document</span>.getElementsByClassName(cleanedSelector) : <span class="hljs-built_in">document</span>.querySelectorAll(selector) : selector <span class="hljs-keyword">instanceof</span> CS ? selector : <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'object'</span> &amp;&amp; (selector.nodeType === <span class="hljs-number">1</span> || selector.nodeType === <span class="hljs-number">9</span>) ? [selector] : selector.constructor === <span class="hljs-built_in">Array</span> ? selector : [];
 
-      <span class="hljs-built_in">console</span>.log(selector);
-      <span class="hljs-built_in">console</span>.log(selector <span class="hljs-keyword">instanceof</span> CS);
-
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CS(collection);
     }
 
