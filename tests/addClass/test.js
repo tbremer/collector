@@ -1,7 +1,3 @@
-var expect = chai.expect;
-
-var expect = chai.expect;
-
 describe('addClass', function() {
   it('should add the class `active`', function() {
     $('#collector-addClass .test').addClass('active');
@@ -18,21 +14,5 @@ describe('addClass', function() {
     $('#collector-addClass .test').addClass('active');
 
     expect(document.querySelector('#collector-addClass .test').className).to.equal("test active");
-  });
-});
-
-describe('$', function() {
-  it('should grab nodes', function() {
-    expect($('#collector-selection .test').length).to.equal(6);
-  });
-});
-
-describe('hasClass', function() {
-  it('should return false', function() {
-    expect($('#collector-hasClass-false div').hasClass('test')).to.equal(false);
-  });
-
-  it('should return true', function() {
-    expect($('#collector-hasClass-true div').hasClass('test')).to.equal(true);
   });
 });

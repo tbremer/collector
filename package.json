@@ -4,6 +4,7 @@
   "description": "Super extendible, light weight implementation of jQuery / Zepto.",
   "scripts": {
     "doc": "./node_modules/.bin/docco src/*.js",
+    "pretest": "gulp tests",
     "test": "./node_modules/.bin/mocha-phantomjs tests/test.html"
   },
   "repository": {
