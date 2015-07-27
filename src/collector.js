@@ -1,5 +1,14 @@
 (function() {
+  // /**
+  //  * @const collector
+  //  * @description this is what gets bound to the window, it is our main function.
+  //  */
   const collector = (function () {
+    // /**
+    //  * @function CS
+    //  * @description this is our factory for binding any itteratable functions to.
+    //  * @arg {array|object}
+    //  */
     function CS(collection) {
       let i = 0, len = collection.length;
       for(; i < len; i++) {
@@ -12,6 +21,12 @@
       this.some = Array.prototype.some;
     }
 
+    // /**
+    //  * @function $
+    //  * @description this is our main entrypoint for most users / use cases.
+    //  * @arg  {string|collection|domnode} selector css selector, dom node, or previously built collection.
+    //  * @return {factory} instance of CS
+    //  */
     function $(selector) {
       let collection = (!selector ? [] :
             (typeof selector === 'string') ? document.querySelectorAll(selector) :

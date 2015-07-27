@@ -2,9 +2,9 @@
   "name": "collector",
   "version": "0.0.1",
   "description": "Super extendible, light weight implementation of jQuery / Zepto.",
-  "main": "index.js",
+  "test": "./node_modules/.bin/mocha"
   "scripts": {
-    "test": "npm test"
+    "doc": "./node_modules/.bin/docco src/*.js"
   },
   "repository": {
     "type": "git",
@@ -26,10 +26,14 @@
   },
   "homepage": "https://github.com/tbremer/collector#readme",
   "devDependencies": {
+    "chai": "^3.2.0",
+    "docco": "^0.7.0",
     "eslint": "^0.24.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
     "gulp-concat": "^2.6.0",
-    "gulp-uglify": "^1.2.0"
+    "gulp-docco": "0.0.4",
+    "gulp-uglify": "^1.2.0",
+    "mocha": "^2.2.5"
   }
 }

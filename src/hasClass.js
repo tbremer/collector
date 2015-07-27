@@ -1,8 +1,17 @@
-/**
- * API: CLASS
- * hasClass should take a collection
- * should return a collection that matches the given klass
- */
+//  ###hasClass
+//  _hasClass should return true if any of the nodes contain the class you sent in_
+//  - **memberof** class api
+//  - **arg** `string` :: class name to be checked across all nodes in collection.
+//  - **returns** boolean
+//
+//  ####example
+//  ```html
+//  <div class="test hasclass">Hello World</div>
+//  ```
+//  ```javascript
+//  $('.test').hasClass('hasClass');
+//  // true
+//  ```
 (function($) {
   $.plugin('hasClass', function(klass) {
     return this.some((node) => {
