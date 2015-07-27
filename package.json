@@ -4,8 +4,8 @@
   "description": "Super extendible, light weight implementation of jQuery / Zepto.",
   "scripts": {
     "doc": "./node_modules/.bin/docco src/*.js",
-    "pretest": "gulp tests",
-    "test": "./node_modules/.bin/mocha-phantomjs tests/test.html"
+    "pretest": "gulp clean-tests build-tests",
+    "test": "./node_modules/.bin/mocha-phantomjs tests/runner.html"
   },
   "repository": {
     "type": "git",
@@ -38,7 +38,6 @@
     "gulp-mocha-phantomjs": "^0.8.1",
     "gulp-uglify": "^1.2.0",
     "mocha": "^2.2.5",
-    "mocha-phantomjs": "^3.6.0",
-    "phantomjs": "^1.9.7-15"
+    "mocha-phantomjs": "^3.6.0"
   }
 }

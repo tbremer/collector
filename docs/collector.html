@@ -29,7 +29,7 @@
               </div>
               <pre><code>CollectorJS
 http:<span class="hljs-comment">//collectorjs.com</span>
-(c) <span class="hljs-number">2015</span> Tom Bremer
+(c) <span class="hljs-number">2015</span> Tom Bremer -- @_tbremer -- github.com/tbremer
 Collector may be freely distributed under the MIT license
 </code></pre>
             </div>
@@ -66,6 +66,18 @@ Collector may be freely distributed under the MIT license
       <span class="hljs-keyword">this</span>.each = <span class="hljs-built_in">Array</span>.prototype.forEach;
       <span class="hljs-keyword">this</span>.indexOf = <span class="hljs-built_in">Array</span>.prototype.indexOf;
       <span class="hljs-keyword">this</span>.some = <span class="hljs-built_in">Array</span>.prototype.some;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimple</span>(<span class="hljs-params">selector</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-regexp">/ /g</span>.test(selector) === <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleID</span>(<span class="hljs-params">selector</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span> &amp;&amp; _isSimple(selector) &amp;&amp; selector[<span class="hljs-number">0</span>] === <span class="hljs-string">'#'</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleClass</span>(<span class="hljs-params">selector</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span> &amp;&amp; _isSimple(selector) &amp;&amp; selector[<span class="hljs-number">0</span>] === <span class="hljs-string">'.'</span>;
     }</pre></div></div>
             
         </li>
@@ -89,7 +101,17 @@ Collector may be freely distributed under the MIT license
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">$</span>(<span class="hljs-params">selector</span>) </span>{
-      <span class="hljs-keyword">var</span> collection = !selector ? [] : <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span> ? <span class="hljs-built_in">document</span>.querySelectorAll(selector) : selector <span class="hljs-keyword">instanceof</span> CS ? selector : <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'object'</span> &amp;&amp; (selector.nodeType === <span class="hljs-number">1</span> || selector.nodeType === <span class="hljs-number">9</span>) ? [selector] : selector.constructor === <span class="hljs-built_in">Array</span> ? selector : [];
+      <span class="hljs-keyword">var</span> collection = <span class="hljs-literal">undefined</span>,
+          cleanedSelector = <span class="hljs-literal">undefined</span>;
+
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) {
+        cleanedSelector = selector.slice(<span class="hljs-number">1</span>);
+      }
+
+      collection = !selector ? [] : <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span> ? _isSimpleID(selector) ? [<span class="hljs-built_in">document</span>.getElementById(cleanedSelector)] : _isSimpleClass(selector) ? <span class="hljs-built_in">document</span>.getElementsByClassName(cleanedSelector) : <span class="hljs-built_in">document</span>.querySelectorAll(selector) : selector <span class="hljs-keyword">instanceof</span> CS ? selector : <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'object'</span> &amp;&amp; (selector.nodeType === <span class="hljs-number">1</span> || selector.nodeType === <span class="hljs-number">9</span>) ? [selector] : selector.constructor === <span class="hljs-built_in">Array</span> ? selector : [];
+
+      <span class="hljs-built_in">console</span>.log(selector);
+      <span class="hljs-built_in">console</span>.log(selector <span class="hljs-keyword">instanceof</span> CS);
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CS(collection);
     }

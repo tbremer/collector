@@ -24,20 +24,12 @@
     "prefer-const": true
   },
   "globals": {
-    "$": true
+    "$": true,
+    "expect": true
   },
   "rules": {
-    "quotes": [
-      0,
-      "single",
-      "avoid-escape"
-    ],
-    "comma-spacing": [
-      1,
-      {
-        "before": false,
-        "after": true
-      }
-    ]
+    "comma-spacing": [1, {"before": false,"after": true}],
+    "quotes": [0,"single","avoid-escape"],
+    "no-underscore-dangle": 0
   }
 }

@@ -1,6 +1,6 @@
 //     CollectorJS
 //     http://collectorjs.com
-//     (c) 2015 Tom Bremer
+//     (c) 2015 Tom Bremer -- @_tbremer -- github.com/tbremer
 //     Collector may be freely distributed under the MIT license
 
 (function() {
@@ -21,6 +21,26 @@
       this.some = Array.prototype.some;
     }
 
+    function _isSimple(selector) {
+      return (/ /g.test(selector) === false);
+    }
+
+    function _isSimpleID(selector) {
+      return (
+        (typeof selector === 'string') &&
+        (_isSimple(selector)) &&
+        (selector[0] === '#')
+      );
+    }
+
+    function _isSimpleClass(selector) {
+      return (
+        (typeof selector === 'string') &&
+        (_isSimple(selector)) &&
+        (selector[0] === '.')
+      );
+    }
+
     // /**
     //  * @function $
     //  * @description this is our main entrypoint for most users / use cases.
@@ -28,8 +48,12 @@
     //  * @return {factory} instance of CS
     //  */
     function $(selector) {
-      let collection = (!selector ? [] :
-            (typeof selector === 'string') ? document.querySelectorAll(selector) :
+      let collection, cleanedSelector;
+
+      if(typeof selector === 'string') { cleanedSelector = selector.slice(1); }
+
+      collection = (!selector ? [] :
+            (typeof selector === 'string') ? (((_isSimpleID(selector)) ? [document.getElementById(cleanedSelector)] : (_isSimpleClass(selector)) ? document.getElementsByClassName(cleanedSelector) : document.querySelectorAll(selector) )) :
             (selector instanceof CS) ? selector :
             (typeof selector === 'object' && (selector.nodeType === 1 || selector.nodeType === 9)) ? [selector] :
             (selector.constructor === Array) ? selector : [] );
