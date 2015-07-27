@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "ecmaFeatures": {
     "arrowFunctions": true,
@@ -21,6 +22,9 @@
     "templateStrings": true,
     "no-var": true,
     "prefer-const": true
+  },
+  "globals": {
+    "$": true
   },
   "rules": {
     "quotes": [
