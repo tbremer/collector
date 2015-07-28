@@ -13,7 +13,7 @@ let gulp = require('gulp'),
 let paths = {
   docco: 'dist/collector.js',
   scripts: ['src/collector.js', 'src/**/*.js'],
-  tests: ['tests/collector/**/*.js', 'tests/**/*.js']
+  tests: ['tests/collector/**/*.js', 'tests/**/*.js', '!tests/test.js']
 };
 
 let swallowError = function(error) {
@@ -21,19 +21,19 @@ let swallowError = function(error) {
     this.emit('end');
 };
 
-gulp.task('webserver', function() {
+gulp.task('serve', function() {
   gulp.src('./')
     .pipe(webserver({
       livereload: true,
-      directoryListing: true,
-      open: true
+      directoryListing: true
     }));
 });
 
 gulp.task('deploy', ['scripts', 'uglify', 'test', 'docco-individual']);
 gulp.task('test', ['clean-tests', 'build-tests', 'run-tests']);
 gulp.task('watch', function() {
-  gulp.watch([paths.scripts, paths.tests], ['scripts', 'test', 'docco-individual']);
+  gulp.watch([paths.scripts], ['scripts', 'test', 'docco-individual']);
+  gulp.watch([paths.tests], ['test']);
 });
 
 gulp.task('docco-individual', function() {

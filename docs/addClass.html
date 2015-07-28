@@ -44,16 +44,16 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>)</span>{
-  $.plugin(<span class="hljs-string">'addClass'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">klass</span>) </span>{
-    <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">node</span>) </span>{
+            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>) </span>{
+  $.plugin(<span class="hljs-string">`addClass`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">klass</span>) </span>{
+    <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">node</span>) </span>{
       <span class="hljs-keyword">if</span> ($(node).hasClass(klass) === <span class="hljs-literal">false</span>) {
         node.className += <span class="hljs-string">` <span class="hljs-subst">${klass}</span>`</span>;
-      };
+      }
     });
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  })
+  });
 })(collector);</pre></div></div>
             
         </li>

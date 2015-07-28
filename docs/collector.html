@@ -36,7 +36,7 @@ Collector may be freely distributed under the MIT license
             
             <div class="content"><div class='highlight'><pre>
 (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">const</span> collector = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+  <span class="hljs-keyword">const</span> collector = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -55,7 +55,8 @@ All plugins modify CS’ prototype chain.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CS</span>(<span class="hljs-params">collection</span>) </span>{
-      <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = collection.length;
+      <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>,
+        len = collection.length;
       <span class="hljs-keyword">for</span>(; i &lt; len; i++) {
         <span class="hljs-keyword">this</span>[i] = collection[i];
       }
@@ -98,9 +99,9 @@ All plugins modify CS’ prototype chain.</p>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleID</span>(<span class="hljs-params">selector</span>) </span>{
       <span class="hljs-keyword">return</span> (
-        (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) &amp;&amp;
+        (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">`string`</span>) &amp;&amp;
         (_isSimple(selector)) &amp;&amp;
-        (selector[<span class="hljs-number">0</span>] === <span class="hljs-string">'#'</span>)
+        (selector[<span class="hljs-number">0</span>] === <span class="hljs-string">`#`</span>)
       );
     }</pre></div></div>
             
@@ -119,9 +120,9 @@ All plugins modify CS’ prototype chain.</p>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleClass</span>(<span class="hljs-params">selector</span>) </span>{
       <span class="hljs-keyword">return</span> (
-        (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) &amp;&amp;
+        (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">`string`</span>) &amp;&amp;
         (_isSimple(selector)) &amp;&amp;
-        (selector[<span class="hljs-number">0</span>] === <span class="hljs-string">'.'</span>)
+        (selector[<span class="hljs-number">0</span>] === <span class="hljs-string">`.`</span>)
       );
     }</pre></div></div>
             
@@ -146,12 +147,12 @@ All plugins modify CS’ prototype chain.</p>
             <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">$</span>(<span class="hljs-params">selector</span>) </span>{
       <span class="hljs-keyword">let</span> collection, cleanedSelector;
 
-      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) { cleanedSelector = selector.slice(<span class="hljs-number">1</span>); }
+      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">`string`</span>) { cleanedSelector = selector.slice(<span class="hljs-number">1</span>); }
 
       collection = (!selector ? [] :
-            (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) ? (((_isSimpleID(selector)) ? [<span class="hljs-built_in">document</span>.getElementById(cleanedSelector)] : (_isSimpleClass(selector)) ? <span class="hljs-built_in">document</span>.getElementsByClassName(cleanedSelector) : <span class="hljs-built_in">document</span>.querySelectorAll(selector) )) :
+            (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">`string`</span>) ? (((_isSimpleID(selector)) ? [<span class="hljs-built_in">document</span>.getElementById(cleanedSelector)] : (_isSimpleClass(selector)) ? <span class="hljs-built_in">document</span>.getElementsByClassName(cleanedSelector) : <span class="hljs-built_in">document</span>.querySelectorAll(selector) )) :
             (selector <span class="hljs-keyword">instanceof</span> CS) ? selector :
-            (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'object'</span> &amp;&amp; (selector.nodeType === <span class="hljs-number">1</span> || selector.nodeType === <span class="hljs-number">9</span>)) ? [selector] :
+            (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">`object`</span> &amp;&amp; (selector.nodeType === <span class="hljs-number">1</span> || selector.nodeType === <span class="hljs-number">9</span>)) ? [selector] :
             (selector.constructor === <span class="hljs-built_in">Array</span>) ? selector : [] );
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CS(collection);
@@ -188,7 +189,7 @@ All plugins modify CS’ prototype chain.</p>
             <div class="content"><div class='highlight'><pre>    $.extend = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
       <span class="hljs-keyword">let</span> _this = <span class="hljs-keyword">this</span>, i;
       <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &gt; <span class="hljs-number">2</span>) {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'$.extend expects at most 2 arguments. Old object and New object'</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`$.extend expects at most 2 arguments. Old object and New object`</span>);
       }
       <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &gt; <span class="hljs-number">1</span>) {
         _this = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];

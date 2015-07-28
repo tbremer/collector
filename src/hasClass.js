@@ -13,7 +13,7 @@
 //  // true
 //  ```
 (function($) {
-  $.plugin('hasClass', function(klass) {
+  $.plugin(`hasClass`, function(klass) {
     return this.some((node) => {
       let cn = node.className,
         reg = new RegExp(klass);

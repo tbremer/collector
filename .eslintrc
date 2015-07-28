@@ -25,11 +25,15 @@
   },
   "globals": {
     "$": true,
+    "collector": true,
     "expect": true
   },
   "rules": {
-    "comma-spacing": [1, {"before": false,"after": true}],
-    "quotes": [0,"single","avoid-escape"],
-    "no-underscore-dangle": 0
+    "comma-spacing": [2],
+    "eqeqeq": [2, "smart"],
+    "no-mixed-spaces-and-tabs": 2,
+    "no-multi-spaces": 2,
+    "no-underscore-dangle": 0,
+    "quotes": [2, "backtick", "avoid-escape"]
   }
 }

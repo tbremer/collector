@@ -4,14 +4,15 @@
 //     Collector may be freely distributed under the MIT license
 
 (function() {
-  const collector = (function () {
+  const collector = (function() {
     // ###CS
     // _this is our factory for binding any itteratable functions to._
     //
     // CS transforms collections into the functional suite.
     // All plugins modify CS' prototype chain.
     function CS(collection) {
-      let i = 0, len = collection.length;
+      let i = 0,
+        len = collection.length;
       for(; i < len; i++) {
         this[i] = collection[i];
       }
@@ -30,18 +31,18 @@
     // Check if a selector is a simple ID.
     function _isSimpleID(selector) {
       return (
-        (typeof selector === 'string') &&
+        (typeof selector === `string`) &&
         (_isSimple(selector)) &&
-        (selector[0] === '#')
+        (selector[0] === `#`)
       );
     }
 
     // Check if a selector is a simple class.
     function _isSimpleClass(selector) {
       return (
-        (typeof selector === 'string') &&
+        (typeof selector === `string`) &&
         (_isSimple(selector)) &&
-        (selector[0] === '.')
+        (selector[0] === `.`)
       );
     }
 
@@ -52,12 +53,12 @@
     function $(selector) {
       let collection, cleanedSelector;
 
-      if(typeof selector === 'string') { cleanedSelector = selector.slice(1); }
+      if(typeof selector === `string`) { cleanedSelector = selector.slice(1); }
 
       collection = (!selector ? [] :
-            (typeof selector === 'string') ? (((_isSimpleID(selector)) ? [document.getElementById(cleanedSelector)] : (_isSimpleClass(selector)) ? document.getElementsByClassName(cleanedSelector) : document.querySelectorAll(selector) )) :
+            (typeof selector === `string`) ? (((_isSimpleID(selector)) ? [document.getElementById(cleanedSelector)] : (_isSimpleClass(selector)) ? document.getElementsByClassName(cleanedSelector) : document.querySelectorAll(selector) )) :
             (selector instanceof CS) ? selector :
-            (typeof selector === 'object' && (selector.nodeType === 1 || selector.nodeType === 9)) ? [selector] :
+            (typeof selector === `object` && (selector.nodeType === 1 || selector.nodeType === 9)) ? [selector] :
             (selector.constructor === Array) ? selector : [] );
 
       return new CS(collection);
@@ -85,7 +86,7 @@
     $.extend = function (obj) {
       let _this = this, i;
       if (arguments.length > 2) {
-        return Error('$.extend expects at most 2 arguments. Old object and New object');
+        return Error(`$.extend expects at most 2 arguments. Old object and New object`);
       }
       if (arguments.length > 1) {
         _this = arguments[0];

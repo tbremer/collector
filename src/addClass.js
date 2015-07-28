@@ -14,14 +14,14 @@
 //  ```html
 // <div class="example test">Hello World</div>
 // ```
-(function($){
-  $.plugin('addClass', function(klass) {
-    this.each(function (node) {
+(function($) {
+  $.plugin(`addClass`, function(klass) {
+    this.each(function(node) {
       if ($(node).hasClass(klass) === false) {
         node.className += ` ${klass}`;
-      };
+      }
     });
 
     return this;
-  })
+  });
 })(collector);

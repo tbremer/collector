@@ -45,14 +45,14 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>) </span>{
-  $.plugin(<span class="hljs-string">'removeClass'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">klass</span>) </span>{
+  $.plugin(<span class="hljs-string">`removeClass`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">klass</span>) </span>{
     <span class="hljs-keyword">this</span>.each((node) =&gt; {
-      node.className = node.className.replace(klass, <span class="hljs-string">''</span>);
-    })
+      node.className = node.className.replace(klass, <span class="hljs-string">``</span>).trim();
+    });
 
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
   });
-})(collector)</pre></div></div>
+})(collector);</pre></div></div>
             
         </li>
         

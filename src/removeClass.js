@@ -15,11 +15,11 @@
 // <div class="example">Hello World</div>
 // ```
 (function($) {
-  $.plugin('removeClass',function(klass) {
+  $.plugin(`removeClass`, function(klass) {
     this.each((node) => {
-      node.className = node.className.replace(klass, '');
-    })
+      node.className = node.className.replace(klass, ``).trim();
+    });
 
     return this;
   });
-})(collector)
+})(collector);
