@@ -28,5 +28,4 @@ node_modules
 
 # REPO SPECIFIC
 .DS_Store
-dist/
 tests/test.js
