@@ -13,7 +13,7 @@ let gulp = require('gulp'),
 let paths = {
   docco: 'dist/collector.js',
   scripts: ['src/collector.js', 'src/**/*.js'],
-  tests: ['tests/base-test.js', 'tests/collector/**/*.js', 'tests/**/*.js']
+  tests: ['tests/collector/**/*.js', 'tests/**/*.js']
 };
 
 let swallowError = function(error) {
@@ -41,11 +41,6 @@ gulp.task('docco-individual', function() {
     .pipe(docco())
     .pipe(gulp.dest('./docs'));
 });
-// gulp.task('docco-built', ['scripts'], function () {
-//   return gulp.src(paths.docco)
-//     .pipe(docco())
-//     .pipe(gulp.dest('./docs'));
-// });
 
 gulp.task('scripts', function () {
   return gulp.src(paths.scripts)
