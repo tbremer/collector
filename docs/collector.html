@@ -29,16 +29,14 @@
               </div>
               <pre><code>CollectorJS
 http:<span class="hljs-comment">//collectorjs.com</span>
-(c) <span class="hljs-number">2015</span> Tom Bremer -- @_tbremer -- github.com/tbremer
+(c) <span class="hljs-number">2015</span> Tom Bremer - @_tbremer - github.com/tbremer
 Collector may be freely distributed under the MIT license
 </code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-pi">
-'use strict'</span>;
-
-(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> collector = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> collector = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -51,14 +49,14 @@ Collector may be freely distributed under the MIT license
               </div>
               <h3 id="cs">CS</h3>
 <p><em>this is our factory for binding any itteratable functions to.</em></p>
-<p>CS accepts strings, collections, arrays sent from the <code>$</code> function</p>
+<p>CS transforms collections into the functional suite.
+All plugins modify CS’ prototype chain.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CS</span>(<span class="hljs-params">collection</span>) </span>{
-      <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>,
-          len = collection.length;
-      <span class="hljs-keyword">for</span> (; i &lt; len; i++) {
+      <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = collection.length;
+      <span class="hljs-keyword">for</span>(; i &lt; len; i++) {
         <span class="hljs-keyword">this</span>[i] = collection[i];
       }
       <span class="hljs-keyword">this</span>.length = len;
@@ -66,18 +64,6 @@ Collector may be freely distributed under the MIT license
       <span class="hljs-keyword">this</span>.each = <span class="hljs-built_in">Array</span>.prototype.forEach;
       <span class="hljs-keyword">this</span>.indexOf = <span class="hljs-built_in">Array</span>.prototype.indexOf;
       <span class="hljs-keyword">this</span>.some = <span class="hljs-built_in">Array</span>.prototype.some;
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimple</span>(<span class="hljs-params">selector</span>) </span>{
-      <span class="hljs-keyword">return</span> <span class="hljs-regexp">/ /g</span>.test(selector) === <span class="hljs-literal">false</span>;
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleID</span>(<span class="hljs-params">selector</span>) </span>{
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span> &amp;&amp; _isSimple(selector) &amp;&amp; selector[<span class="hljs-number">0</span>] === <span class="hljs-string">'#'</span>;
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleClass</span>(<span class="hljs-params">selector</span>) </span>{
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span> &amp;&amp; _isSimple(selector) &amp;&amp; selector[<span class="hljs-number">0</span>] === <span class="hljs-string">'.'</span>;
     }</pre></div></div>
             
         </li>
@@ -89,62 +75,13 @@ Collector may be freely distributed under the MIT license
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>/**</p>
-<ul>
-<li>@function $</li>
-<li>@description this is our main entrypoint for most users / use cases.</li>
-<li>@arg  {string|collection|domnode} selector css selector, dom node, or previously built collection.</li>
-<li>@return {factory} instance of CS
-*/</li>
-</ul>
+              <p>Simple regex check to see if <code>string</code> selectors are simple (contain no spaces)</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">$</span>(<span class="hljs-params">selector</span>) </span>{
-      <span class="hljs-keyword">var</span> collection = <span class="hljs-literal">undefined</span>,
-          cleanedSelector = <span class="hljs-literal">undefined</span>;
-
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) {
-        cleanedSelector = selector.slice(<span class="hljs-number">1</span>);
-      }
-
-      collection = !selector ? [] : <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span> ? _isSimpleID(selector) ? [<span class="hljs-built_in">document</span>.getElementById(cleanedSelector)] : _isSimpleClass(selector) ? <span class="hljs-built_in">document</span>.getElementsByClassName(cleanedSelector) : <span class="hljs-built_in">document</span>.querySelectorAll(selector) : selector <span class="hljs-keyword">instanceof</span> CS ? selector : <span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'object'</span> &amp;&amp; (selector.nodeType === <span class="hljs-number">1</span> || selector.nodeType === <span class="hljs-number">9</span>) ? [selector] : selector.constructor === <span class="hljs-built_in">Array</span> ? selector : [];
-
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CS(collection);
-    }
-
-    $.extend = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
-      <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>,
-          i = <span class="hljs-literal">undefined</span>;
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &gt; <span class="hljs-number">2</span>) {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'$.extend expects at most 2 arguments. Old object and New object'</span>);
-      }
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &gt; <span class="hljs-number">1</span>) {
-        that = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
-        obj = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
-      }
-
-      <span class="hljs-keyword">for</span> (i <span class="hljs-keyword">in</span> obj) {
-        <span class="hljs-keyword">if</span> (obj.hasOwnProperty(i)) {
-          that[i] = obj[i];
-        }
-      }
-    };
-
-    $.plugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, func</span>) </span>{
-      CS.prototype[name] = func;
-    };
-
-    <span class="hljs-keyword">return</span> $;
-  })();
-
-  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.$ === <span class="hljs-literal">undefined</span>) {
-    <span class="hljs-built_in">window</span>.$ = collector;
-  }
-  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.collector === <span class="hljs-literal">undefined</span>) {
-    <span class="hljs-built_in">window</span>.collector = collector;
-  }
-})();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimple</span>(<span class="hljs-params">selector</span>) </span>{
+      <span class="hljs-keyword">return</span> (<span class="hljs-regexp">/ /g</span>.test(selector) === <span class="hljs-literal">false</span>);
+    }</pre></div></div>
             
         </li>
         
@@ -155,34 +92,17 @@ Collector may be freely distributed under the MIT license
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h3 id="addclass">addClass</h3>
-<p><em>addClass should take collections and add passed class name if they class name isn’t already on the node</em></p>
-<ul>
-<li><strong>memberof</strong> class api</li>
-<li><strong>arg</strong> <code>string</code> :: class name to be added to all nodes in collection.</li>
-<li><strong>returns</strong> modified collection</li>
-</ul>
-<h4 id="example">example</h4>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"example"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<pre><code class="lang-javascript"> $(<span class="hljs-string">'.example'</span>).addClass(<span class="hljs-string">'test'</span>);
-</code></pre>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"example test"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
+              <p>Check if a selector is a simple ID.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$</span>) </span>{
-  $.plugin(<span class="hljs-string">'addClass'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">klass</span>) </span>{
-    <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">node</span>) </span>{
-      <span class="hljs-keyword">if</span> ($(node).hasClass(klass) === <span class="hljs-literal">false</span>) {
-        node.className += <span class="hljs-string">' '</span> + klass;
-      };
-    });
-
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  });
-})(collector);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleID</span>(<span class="hljs-params">selector</span>) </span>{
+      <span class="hljs-keyword">return</span> (
+        (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) &amp;&amp;
+        (_isSimple(selector)) &amp;&amp;
+        (selector[<span class="hljs-number">0</span>] === <span class="hljs-string">'#'</span>)
+      );
+    }</pre></div></div>
             
         </li>
         
@@ -193,33 +113,17 @@ Collector may be freely distributed under the MIT license
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <h3 id="hasclass">hasClass</h3>
-<p> <em>hasClass should return true if any of the nodes contain the class you sent in</em></p>
-<ul>
-<li><strong>memberof</strong> class api</li>
-<li><strong>arg</strong> <code>string</code> :: class name to be checked across all nodes in collection.</li>
-<li><p><strong>returns</strong> boolean</p>
-<h4 id="example">example</h4>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"test hasclass"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<pre><code class="lang-javascript">$(<span class="hljs-string">'.test'</span>).hasClass(<span class="hljs-string">'hasClass'</span>);
-<span class="hljs-comment">// true</span>
-</code></pre>
-</li>
-</ul>
+              <p>Check if a selector is a simple class.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$</span>) </span>{
-  $.plugin(<span class="hljs-string">'hasClass'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">klass</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.some(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">node</span>) </span>{
-      <span class="hljs-keyword">var</span> cn = node.className,
-          reg = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(klass);
-
-      <span class="hljs-keyword">return</span> reg.test(cn);
-    });
-  });
-})(collector);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleClass</span>(<span class="hljs-params">selector</span>) </span>{
+      <span class="hljs-keyword">return</span> (
+        (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) &amp;&amp;
+        (_isSimple(selector)) &amp;&amp;
+        (selector[<span class="hljs-number">0</span>] === <span class="hljs-string">'.'</span>)
+      );
+    }</pre></div></div>
             
         </li>
         
@@ -230,32 +134,86 @@ Collector may be freely distributed under the MIT license
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h3 id="removeclass">removeClass</h3>
-<p><em>removeClass should take collections and remove the passed class name on any node that has it</em></p>
+              <h3 id="-">$</h3>
+<p><em>this is our main entrypoint for most users / use cases.</em></p>
 <ul>
-<li><strong>memberof</strong> class api</li>
-<li><strong>arg</strong> <code>string</code> :: class name to be removed across all nodes in collection.</li>
-<li><strong>returns</strong> modified collection</li>
+<li><strong>arg</strong> <code>string | collection | HTML Element</code> :: selector css selector, dom node, or previously built collection.</li>
+<li><strong>returns</strong> <code>factory</code> :: new instance of CS</li>
 </ul>
-<h4 id="example">example</h4>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"example test"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">$</span>(<span class="hljs-params">selector</span>) </span>{
+      <span class="hljs-keyword">let</span> collection, cleanedSelector;
+
+      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) { cleanedSelector = selector.slice(<span class="hljs-number">1</span>); }
+
+      collection = (!selector ? [] :
+            (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'string'</span>) ? (((_isSimpleID(selector)) ? [<span class="hljs-built_in">document</span>.getElementById(cleanedSelector)] : (_isSimpleClass(selector)) ? <span class="hljs-built_in">document</span>.getElementsByClassName(cleanedSelector) : <span class="hljs-built_in">document</span>.querySelectorAll(selector) )) :
+            (selector <span class="hljs-keyword">instanceof</span> CS) ? selector :
+            (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">'object'</span> &amp;&amp; (selector.nodeType === <span class="hljs-number">1</span> || selector.nodeType === <span class="hljs-number">9</span>)) ? [selector] :
+            (selector.constructor === <span class="hljs-built_in">Array</span>) ? selector : [] );
+
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CS(collection);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h3 id="-extend">$.extend</h3>
+<p><em>extend has two purposes</em></p>
+<p><em><strong>first:</strong></em> add functionality to the main <code>$</code> prototype, this is the case for <code>$.ajax</code> or any global like bindings. You should pass functional extenstions as on <code>Object</code> and we will add it into the <code>$</code> prototype.</p>
+<h4 id="example-">example:</h4>
+<pre><code class="lang-javascript">$.extend({
+ test: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) </span>{
+   alert(str);
+   <span class="hljs-built_in">console</span>.info(<span class="hljs-string">`test fired!`</span>);
+ }
+});
 </code></pre>
-<pre><code class="lang-javascript">$(<span class="hljs-string">'.example'</span>).removeClass(<span class="hljs-string">'test'</span>)
-</code></pre>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"example"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<p><em><strong>second:</strong></em> merge two objects on top of eachother. You should pass your original object as the first argument, and the merging object as the second argument._</p>
+<h4 id="example-">example:</h4>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> merged = $.extend({foo: <span class="hljs-string">'bar'</span>}, {hello: <span class="hljs-string">'world'</span>});
+<span class="hljs-comment">//{foo: 'bar', hello: 'world'}</span>
 </code></pre>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$</span>) </span>{
-  $.plugin(<span class="hljs-string">'removeClass'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">klass</span>) </span>{
-    <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">node</span>) </span>{
-      node.className = node.className.replace(klass, <span class="hljs-string">''</span>);
-    });
+            <div class="content"><div class='highlight'><pre>    $.extend = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
+      <span class="hljs-keyword">let</span> _this = <span class="hljs-keyword">this</span>, i;
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &gt; <span class="hljs-number">2</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'$.extend expects at most 2 arguments. Old object and New object'</span>);
+      }
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &gt; <span class="hljs-number">1</span>) {
+        _this = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>];
+        obj = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];
+      }
 
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  });
-})(collector);</pre></div></div>
+      <span class="hljs-keyword">for</span>(i <span class="hljs-keyword">in</span> obj) {
+        <span class="hljs-keyword">if</span>(obj.hasOwnProperty(i)) {
+          _this[i] = obj[i];
+        }
+      }
+
+      <span class="hljs-keyword">return</span> _this;
+    };
+
+    $.plugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, func</span>) </span>{
+      CS.prototype[name] = func;
+    };
+
+    <span class="hljs-keyword">return</span> $;
+  })();
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.$ === <span class="hljs-literal">undefined</span>) { <span class="hljs-built_in">window</span>.$ = collector; }
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.collector === <span class="hljs-literal">undefined</span>) { <span class="hljs-built_in">window</span>.collector = collector; }
+})();</pre></div></div>
             
         </li>
         

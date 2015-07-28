@@ -6,10 +6,10 @@
 //
 //  ####example
 //  ```html
-//  <div class="test hasclass">Hello World</div>
+//  <div class="test active">Hello World</div>
 //  ```
 //  ```javascript
-//  $('.test').hasClass('hasClass');
+//  $('.test').hasClass('active');
 //  // true
 //  ```
 (function($) {

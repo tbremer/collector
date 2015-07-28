@@ -7,12 +7,13 @@ let gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     docco = require('gulp-docco'),
-    mochaPhantomJS = require('gulp-mocha-phantomjs');
+    mochaPhantomJS = require('gulp-mocha-phantomjs'),
+    webserver = require('gulp-webserver');
 
 let paths = {
   docco: 'dist/collector.js',
   scripts: ['src/collector.js', 'src/**/*.js'],
-  tests: ['tests/base-test.js', 'tests/**/*.js']
+  tests: ['tests/base-test.js', 'tests/collector/**/*.js', 'tests/**/*.js']
 };
 
 let swallowError = function(error) {
@@ -20,18 +21,31 @@ let swallowError = function(error) {
     this.emit('end');
 };
 
-
-gulp.task('deploy', ['scripts', 'uglify', 'docco']);
-gulp.task('test', ['clean-tests', 'build-tests', 'run-tests']);
-gulp.task('watch', function() {
-  gulp.watch(paths.scripts, ['scripts', 'test', 'docco']);
+gulp.task('webserver', function() {
+  gulp.src('./')
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: true,
+      open: true
+    }));
 });
 
-gulp.task('docco', ['scripts'], function () {
-  return gulp.src(paths.docco)
+gulp.task('deploy', ['scripts', 'uglify', 'test', 'docco-individual']);
+gulp.task('test', ['clean-tests', 'build-tests', 'run-tests']);
+gulp.task('watch', function() {
+  gulp.watch([paths.scripts, paths.tests], ['scripts', 'test', 'docco-individual']);
+});
+
+gulp.task('docco-individual', function() {
+  return gulp.src(paths.scripts)
     .pipe(docco())
     .pipe(gulp.dest('./docs'));
 });
+// gulp.task('docco-built', ['scripts'], function () {
+//   return gulp.src(paths.docco)
+//     .pipe(docco())
+//     .pipe(gulp.dest('./docs'));
+// });
 
 gulp.task('scripts', function () {
   return gulp.src(paths.scripts)
