@@ -141,12 +141,17 @@
 })(collector);
 
 (function ($) {
+  var ran = 0;
   $.plugin("children", function () {
+    ran++;
     var kids = [];
     this.each(function (el) {
-      kids.push([].slice.call(el.children));
+      if (el !== null) {
+        kids.push([].slice.call(el.children));
+      }
     });
-
+    console.log(ran);
+    console.log(kids);
     return $([].concat.apply([], kids));
   });
 })(collector);
