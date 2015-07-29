@@ -11,6 +11,8 @@ describe('find', function () {
     let assert = $('#collector-find-01').find('.find-child').length,
         expected = 8;
 
+    console.log($('#collector-find-01').find('.find-child'));
+
     expect(assert).to.equal(expected);
 
   });

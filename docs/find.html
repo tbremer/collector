@@ -35,16 +35,26 @@
     <span class="hljs-keyword">if</span> (!context) {
       <span class="hljs-keyword">return</span> $();
     }
-
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'find…'</span>);
-
     <span class="hljs-keyword">let</span> EP = Element.prototype,
-        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector,
+        kids = [], _kids;
 
-    <span class="hljs-keyword">this</span>.filter((el) =&gt; {
-      <span class="hljs-built_in">console</span>.log(el);
+    <span class="hljs-keyword">this</span>.each((el) =&gt; {
+      kids.push([].slice.call(el.childNodes));
     });
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">''</span>)
+
+    kids = kids.concat.apply([], kids);
+    kids.filter((el) =&gt; {
+      <span class="hljs-built_in">console</span>.log(el.nodeType)
+
+      <span class="hljs-keyword">if</span> (el.nodeType === <span class="hljs-number">1</span>) {
+        <span class="hljs-built_in">console</span>.log(matches(el, context));
+      }
+
+      <span class="hljs-keyword">return</span> (el.nodeType === <span class="hljs-number">1</span>)
+    });
+
+    <span class="hljs-built_in">console</span>.log(kids);
   });
 })(collector);</pre></div></div>
             

@@ -3,15 +3,25 @@
     if (!context) {
       return $();
     }
-
-    console.log('find…');
-
     let EP = Element.prototype,
-        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector,
+        kids = [], _kids;
 
-    this.filter((el) => {
-      console.log(el);
+    this.each((el) => {
+      kids.push([].slice.call(el.childNodes));
     });
-    console.log('')
+
+    kids = kids.concat.apply([], kids);
+    kids.filter((el) => {
+      console.log(el.nodeType)
+
+      if (el.nodeType === 1) {
+        console.log(matches(el, context));
+      }
+
+      return (el.nodeType === 1)
+    });
+
+    console.log(kids);
   });
 })(collector);

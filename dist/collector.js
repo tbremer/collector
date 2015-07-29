@@ -169,16 +169,27 @@
     if (!context) {
       return $();
     }
-
-    console.log('find…');
-
     var EP = Element.prototype,
-        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector,
+        kids = [],
+        _kids = undefined;
 
-    this.filter(function (el) {
-      console.log(el);
+    this.each(function (el) {
+      kids.push([].slice.call(el.childNodes));
     });
-    console.log('');
+
+    kids = kids.concat.apply([], kids);
+    kids.filter(function (el) {
+      console.log(el.nodeType);
+
+      if (el.nodeType === 1) {
+        console.log(matches(el, context));
+      }
+
+      return el.nodeType === 1;
+    });
+
+    console.log(kids);
   });
 })(collector);
 
