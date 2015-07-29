@@ -16,4 +16,17 @@ describe('children', () => {
     expect($().children().length).to.equal(0);
     expect($('#collecton-children-03').children().children().length).to.equal(0);
   });
+
+  it('should take context and pass back elements of that context', () => {
+    expect($('#collector-children-01').children('.num-1').length).to.equal(1);
+  });
+
+  it('should take context and pass back an empty array if nothing matches', () => {
+    expect($('#collector-children-03').children('.notPresent').length).to.equal(0);
+  });
+
+  it('should take nested children with context return nodes', () => {
+    expect($('#collector-children-01').children().children('.num-1').length).to.equal(1);
+    expect($('#collector-children-01').children().children('div').length).to.equal(3);
+  });
 });

@@ -31,19 +31,30 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>(($) =&gt; {
-  <span class="hljs-keyword">let</span> ran = <span class="hljs-number">0</span>;
-  $.plugin(<span class="hljs-string">`children`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-    ran++;
-    <span class="hljs-keyword">let</span> kids = [];
-    <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">el</span>) </span>{
+  $.plugin(<span class="hljs-string">`children`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-keyword">let</span> kids = [],
+        EP = Element.prototype,
+        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+
+    <span class="hljs-keyword">this</span>.each((el) =&gt; {
       <span class="hljs-keyword">if</span> (el !== <span class="hljs-literal">null</span>) {
         kids.push([].slice.call(el.children));
       }
-
     });
-    <span class="hljs-built_in">console</span>.log(ran);
-    <span class="hljs-built_in">console</span>.log(kids);
-    <span class="hljs-keyword">return</span> $([].concat.apply([], kids));
+    <span class="hljs-keyword">if</span> (!context) {
+      <span class="hljs-keyword">return</span> $([].concat.apply([], kids));
+    }
+    kids = [];
+    <span class="hljs-keyword">this</span>.each((el) =&gt; {
+      <span class="hljs-keyword">if</span> (el !== <span class="hljs-literal">null</span> &amp;&amp; el.children.length !== <span class="hljs-number">0</span>) {
+        kids.push([].slice.call(el.children));
+      }
+    });
+    kids = [].concat.apply([], kids);
+
+    <span class="hljs-keyword">return</span> kids.filter((el) =&gt; {
+      <span class="hljs-keyword">return</span> matches.call(el, context);
+    });
   });
 })(collector);</pre></div></div>
             

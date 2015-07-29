@@ -18,11 +18,12 @@
       for (; i < len; i++) {
         this[i] = collection[i];
       }
-      this.length = len;
-      this.splice = Array.prototype.splice;
       this.each = Array.prototype.forEach;
+      this.filter = Array.prototype.filter;
       this.indexOf = Array.prototype.indexOf;
+      this.length = len;
       this.some = Array.prototype.some;
+      this.splice = Array.prototype.splice;
     }
 
     // Simple regex check to see if `string` selectors are simple (contain no spaces)
@@ -141,18 +142,30 @@
 })(collector);
 
 (function ($) {
-  var ran = 0;
-  $.plugin("children", function () {
-    ran++;
-    var kids = [];
+  $.plugin("children", function (context) {
+    var kids = [],
+        EP = Element.prototype,
+        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+
     this.each(function (el) {
       if (el !== null) {
         kids.push([].slice.call(el.children));
       }
     });
-    console.log(ran);
-    console.log(kids);
-    return $([].concat.apply([], kids));
+    if (!context) {
+      return $([].concat.apply([], kids));
+    }
+    kids = [];
+    this.each(function (el) {
+      if (el !== null && el.children.length !== 0) {
+        kids.push([].slice.call(el.children));
+      }
+    });
+    kids = [].concat.apply([], kids);
+
+    return kids.filter(function (el) {
+      return matches.call(el, context);
+    });
   });
 })(collector);
 

@@ -16,11 +16,12 @@
       for(; i < len; i++) {
         this[i] = collection[i];
       }
-      this.length = len;
-      this.splice = Array.prototype.splice;
       this.each = Array.prototype.forEach;
+      this.filter = Array.prototype.filter;
       this.indexOf = Array.prototype.indexOf;
+      this.length = len;
       this.some = Array.prototype.some;
+      this.splice = Array.prototype.splice;
     }
 
     // Simple regex check to see if `string` selectors are simple (contain no spaces)

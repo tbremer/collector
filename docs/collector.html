@@ -60,11 +60,12 @@ All plugins modify CS’ prototype chain.</p>
       <span class="hljs-keyword">for</span>(; i &lt; len; i++) {
         <span class="hljs-keyword">this</span>[i] = collection[i];
       }
-      <span class="hljs-keyword">this</span>.length = len;
-      <span class="hljs-keyword">this</span>.splice = <span class="hljs-built_in">Array</span>.prototype.splice;
       <span class="hljs-keyword">this</span>.each = <span class="hljs-built_in">Array</span>.prototype.forEach;
+      <span class="hljs-keyword">this</span>.filter = <span class="hljs-built_in">Array</span>.prototype.filter;
       <span class="hljs-keyword">this</span>.indexOf = <span class="hljs-built_in">Array</span>.prototype.indexOf;
+      <span class="hljs-keyword">this</span>.length = len;
       <span class="hljs-keyword">this</span>.some = <span class="hljs-built_in">Array</span>.prototype.some;
+      <span class="hljs-keyword">this</span>.splice = <span class="hljs-built_in">Array</span>.prototype.splice;
     }</pre></div></div>
             
         </li>
