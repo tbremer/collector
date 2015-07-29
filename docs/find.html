@@ -35,7 +35,17 @@
     <span class="hljs-keyword">if</span> (!context) {
       <span class="hljs-keyword">return</span> $();
     }
-  })
+
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'find…'</span>);
+
+    <span class="hljs-keyword">let</span> EP = Element.prototype,
+        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+
+    <span class="hljs-keyword">this</span>.filter((el) =&gt; {
+      <span class="hljs-built_in">console</span>.log(el);
+    });
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">''</span>)
+  });
 })(collector);</pre></div></div>
             
         </li>

@@ -169,6 +169,16 @@
     if (!context) {
       return $();
     }
+
+    console.log('find…');
+
+    var EP = Element.prototype,
+        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+
+    this.filter(function (el) {
+      console.log(el);
+    });
+    console.log('');
   });
 })(collector);
 
