@@ -102,6 +102,7 @@
       return _this;
     };
 
+    //####TODO: Write documentation on $.plugin
     $.plugin = function (name, func) {
       CS.prototype[name] = func;
     };

@@ -96,6 +96,7 @@
       return _this;
     };
 
+    //####TODO: Write documentation on $.plugin
     $.plugin = function (name, func) {
       CS.prototype[name] = func;
     };
@@ -136,6 +137,17 @@
     });
 
     return this;
+  });
+})(collector);
+
+(function ($) {
+  $.plugin("children", function () {
+    var kids = [];
+    this.each(function (el) {
+      kids.push([].slice.call(el.children));
+    });
+
+    return $([].concat.apply([], kids));
   });
 })(collector);
 

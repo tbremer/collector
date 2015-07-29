@@ -203,9 +203,22 @@ All plugins modify CS’ prototype chain.</p>
       }
 
       <span class="hljs-keyword">return</span> _this;
-    };
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h4 id="todo-write-documentation-on-plugin">TODO: Write documentation on $.plugin</h4>
 
-    $.plugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, func</span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $.plugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, func</span>) </span>{
       CS.prototype[name] = func;
     };
 
