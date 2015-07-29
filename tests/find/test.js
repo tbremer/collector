@@ -1,7 +1,10 @@
 /*eslint no-unused-expressions: 0*/
 describe('find', function () {
   it('should return empty if no context is passed in', () => {
-    expect(true).to.be.false;
+    let assert = $('#collector-find-01').find().length,
+        expected = 0;
+
+    expect(assert).to.equal(expected);
   });
 
   it('should return all the nodes matching a context', () => {

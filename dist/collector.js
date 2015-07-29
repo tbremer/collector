@@ -3,7 +3,7 @@
 //     (c) 2015 Tom Bremer - @_tbremer - github.com/tbremer
 //     Collector may be freely distributed under the MIT license
 
-"use strict";
+'use strict';
 
 (function () {
   var collector = (function () {
@@ -33,12 +33,12 @@
 
     // Check if a selector is a simple ID.
     function _isSimpleID(selector) {
-      return typeof selector === "string" && _isSimple(selector) && selector[0] === "#";
+      return typeof selector === 'string' && _isSimple(selector) && selector[0] === '#';
     }
 
     // Check if a selector is a simple class.
     function _isSimpleClass(selector) {
-      return typeof selector === "string" && _isSimple(selector) && selector[0] === ".";
+      return typeof selector === 'string' && _isSimple(selector) && selector[0] === '.';
     }
 
     // ###$
@@ -49,11 +49,11 @@
       var collection = undefined,
           cleanedSelector = undefined;
 
-      if (typeof selector === "string") {
+      if (typeof selector === 'string') {
         cleanedSelector = selector.slice(1);
       }
 
-      collection = !selector ? [] : typeof selector === "string" ? _isSimpleID(selector) ? [document.getElementById(cleanedSelector)] : _isSimpleClass(selector) ? document.getElementsByClassName(cleanedSelector) : document.querySelectorAll(selector) : selector instanceof CS ? selector : typeof selector === "object" && (selector.nodeType === 1 || selector.nodeType === 9) ? [selector] : selector.constructor === Array ? selector : [];
+      collection = !selector ? [] : typeof selector === 'string' ? _isSimpleID(selector) ? [document.getElementById(cleanedSelector)] : _isSimpleClass(selector) ? document.getElementsByClassName(cleanedSelector) : document.querySelectorAll(selector) : selector instanceof CS ? selector : typeof selector === 'object' && (selector.nodeType === 1 || selector.nodeType === 9) ? [selector] : selector.constructor === Array ? selector : [];
 
       return new CS(collection);
     }
@@ -81,7 +81,7 @@
       var _this = this,
           i = undefined;
       if (arguments.length > 2) {
-        return Error("$.extend expects at most 2 arguments. Old object and New object");
+        return Error('$.extend expects at most 2 arguments. Old object and New object');
       }
       if (arguments.length > 1) {
         _this = arguments[0];
@@ -130,10 +130,10 @@
 // <div class="example test">Hello World</div>
 // ```
 (function ($) {
-  $.plugin("addClass", function (klass) {
+  $.plugin('addClass', function (klass) {
     this.each(function (node) {
       if ($(node).hasClass(klass) === false) {
-        node.className += " " + klass;
+        node.className += ' ' + klass;
       }
     });
 
@@ -142,7 +142,7 @@
 })(collector);
 
 (function ($) {
-  $.plugin("children", function (context) {
+  $.plugin('children', function (context) {
     var kids = [],
         EP = Element.prototype,
         matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
@@ -164,14 +164,13 @@
   });
 })(collector);
 
-// (($) => {
-//   $.plugin('find', function(context) {
-//     // if (!context) {
-//     //   return $();
-//     // }
-//     //
-//     // return
-// })(collector);
+(function ($) {
+  $.plugin('find', function (context) {
+    if (!context) {
+      return $();
+    }
+  });
+})(collector);
 
 //  ###hasClass
 //  _hasClass should return true if any of the nodes contain the class you sent in_
@@ -188,7 +187,7 @@
 //  // true
 //  ```
 (function ($) {
-  $.plugin("hasClass", function (klass) {
+  $.plugin('hasClass', function (klass) {
     return this.some(function (node) {
       var cn = node.className,
           reg = new RegExp(klass);
@@ -215,9 +214,9 @@
 // <div class="example">Hello World</div>
 // ```
 (function ($) {
-  $.plugin("removeClass", function (klass) {
+  $.plugin('removeClass', function (klass) {
     this.each(function (node) {
-      node.className = node.className.replace(klass, "").trim();
+      node.className = node.className.replace(klass, '').trim();
     });
 
     return this;

@@ -1,8 +1,7 @@
-// (($) => {
-//   $.plugin('find', function(context) {
-//     // if (!context) {
-//     //   return $();
-//     // }
-//     //
-//     // return
-// })(collector);
+(($) => {
+  $.plugin('find', function(context) {
+    if (!context) {
+      return $();
+    }
+  })
+})(collector);
