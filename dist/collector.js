@@ -148,7 +148,7 @@
         matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
 
     this.each(function (el) {
-      if (el !== null && el.children.length !== 0) {
+      if (el !== null) {
         kids.push([].slice.call(el.children));
       }
     });
