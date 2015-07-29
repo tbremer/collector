@@ -37,20 +37,16 @@
         matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
 
     <span class="hljs-keyword">this</span>.each((el) =&gt; {
-      <span class="hljs-keyword">if</span> (el !== <span class="hljs-literal">null</span>) {
-        kids.push([].slice.call(el.children));
-      }
-    });
-    <span class="hljs-keyword">if</span> (!context) {
-      <span class="hljs-keyword">return</span> $([].concat.apply([], kids));
-    }
-    kids = [];
-    <span class="hljs-keyword">this</span>.each((el) =&gt; {
       <span class="hljs-keyword">if</span> (el !== <span class="hljs-literal">null</span> &amp;&amp; el.children.length !== <span class="hljs-number">0</span>) {
         kids.push([].slice.call(el.children));
       }
     });
     kids = [].concat.apply([], kids);
+
+    <span class="hljs-keyword">if</span> (!context) {
+      <span class="hljs-keyword">return</span> $(kids);
+    }
+
 
     <span class="hljs-keyword">return</span> kids.filter((el) =&gt; {
       <span class="hljs-keyword">return</span> matches.call(el, context);

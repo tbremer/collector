@@ -67,7 +67,7 @@ gulp.task('build-tests', ['clean-tests'], function() {
 });
 
 gulp.task('run-tests', ['clean-tests', 'clean-tests'], function () {
-    return gulp.src('tests/runner.html')
+    return gulp.src('tests/index.html')
     .pipe(mochaPhantomJS());
 });
 

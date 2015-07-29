@@ -148,26 +148,30 @@
         matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
 
     this.each(function (el) {
-      if (el !== null) {
-        kids.push([].slice.call(el.children));
-      }
-    });
-    if (!context) {
-      return $([].concat.apply([], kids));
-    }
-    kids = [];
-    this.each(function (el) {
       if (el !== null && el.children.length !== 0) {
         kids.push([].slice.call(el.children));
       }
     });
     kids = [].concat.apply([], kids);
 
+    if (!context) {
+      return $(kids);
+    }
+
     return kids.filter(function (el) {
       return matches.call(el, context);
     });
   });
 })(collector);
+
+// (($) => {
+//   $.plugin('find', function(context) {
+//     // if (!context) {
+//     //   return $();
+//     // }
+//     //
+//     // return
+// })(collector);
 
 //  ###hasClass
 //  _hasClass should return true if any of the nodes contain the class you sent in_
