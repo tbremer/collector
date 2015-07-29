@@ -11,17 +11,10 @@
       kids.push([].slice.call(el.childNodes));
     });
 
-    kids = kids.concat.apply([], kids);
-    kids.filter((el) => {
-      console.log(el.nodeType)
-
-      if (el.nodeType === 1) {
-        console.log(matches(el, context));
+    return kids.concat.apply([], kids).filter((el) => {
+      if(el.nodeType === 1) {
+        return matches.call(el, context);
       }
-
-      return (el.nodeType === 1)
     });
-
-    console.log(kids);
   });
 })(collector);

@@ -178,18 +178,11 @@
       kids.push([].slice.call(el.childNodes));
     });
 
-    kids = kids.concat.apply([], kids);
-    kids.filter(function (el) {
-      console.log(el.nodeType);
-
+    return kids.concat.apply([], kids).filter(function (el) {
       if (el.nodeType === 1) {
-        console.log(matches(el, context));
+        return matches.call(el, context);
       }
-
-      return el.nodeType === 1;
     });
-
-    console.log(kids);
   });
 })(collector);
 

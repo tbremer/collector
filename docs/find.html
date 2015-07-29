@@ -43,18 +43,11 @@
       kids.push([].slice.call(el.childNodes));
     });
 
-    kids = kids.concat.apply([], kids);
-    kids.filter((el) =&gt; {
-      <span class="hljs-built_in">console</span>.log(el.nodeType)
-
-      <span class="hljs-keyword">if</span> (el.nodeType === <span class="hljs-number">1</span>) {
-        <span class="hljs-built_in">console</span>.log(matches(el, context));
+    <span class="hljs-keyword">return</span> kids.concat.apply([], kids).filter((el) =&gt; {
+      <span class="hljs-keyword">if</span>(el.nodeType === <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">return</span> matches.call(el, context);
       }
-
-      <span class="hljs-keyword">return</span> (el.nodeType === <span class="hljs-number">1</span>)
     });
-
-    <span class="hljs-built_in">console</span>.log(kids);
   });
 })(collector);</pre></div></div>
             
