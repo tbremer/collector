@@ -7,7 +7,7 @@
 
 (function () {
   var collector = (function () {
-    // ###CS
+    // ### CS
     // _this is our factory for binding any itteratable functions to._
     //
     // CS transforms collections into the functional suite.
@@ -28,7 +28,8 @@
 
     // Simple regex check to see if `string` selectors are simple (contain no spaces)
     function _isSimple(selector) {
-      return / /g.test(selector) === false;
+      return (/ /g.test(selector) === false
+      );
     }
 
     // Check if a selector is a simple ID.
@@ -41,7 +42,7 @@
       return typeof selector === 'string' && _isSimple(selector) && selector[0] === '.';
     }
 
-    // ###$
+    // ### $
     // _this is our main entrypoint for most users / use cases._
     // - **arg** `string | collection | HTML Element` :: selector css selector, dom node, or previously built collection.
     // - **returns** `factory` :: new instance of CS
@@ -58,11 +59,11 @@
       return new CS(collection);
     }
 
-    //###$.extend
+    //### $.extend
     //_extend has two purposes_
     //
     //_**first:**_ add functionality to the main `$` prototype, this is the case for `$.ajax` or any global like bindings. You should pass functional extenstions as on `Object` and we will add it into the `$` prototype.
-    //####example:
+    //#### example:
     //```javascript
     //$.extend({
     //  test: function(str) {
@@ -71,8 +72,8 @@
     //  }
     //});
     //```
-    //_**second:**_ merge two objects on top of eachother. You should pass your original object as the first argument, and the merging object as the second argument._
-    //####example:
+    //_**second:**_ merge two objects on top of eachother. You should pass your original object as the first argument, and the merging object as the second argument.
+    //#### example:
     //```javascript
     //let merged = $.extend({foo: 'bar'}, {hello: 'world'});
     ////{foo: 'bar', hello: 'world'}
@@ -97,7 +98,7 @@
       return _this;
     };
 
-    //####TODO: Write documentation on $.plugin
+    //#### TODO: Write documentation on $.plugin
     $.plugin = function (name, func) {
       CS.prototype[name] = func;
     };
@@ -113,13 +114,13 @@
   }
 })();
 
-// ###addClass
+// ### addClass
 // _addClass should take collections and add passed class name if they class name isn't already on the node_
 // - **memberof** class api
 // - **arg** `string` :: class name to be added to all nodes in collection.
 // - **returns** modified collection
 //
-// ####example
+// #### example
 // ```html
 // <div class="example">Hello World</div>
 // ```

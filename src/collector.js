@@ -5,7 +5,7 @@
 
 (function() {
   const collector = (function() {
-    // ###CS
+    // ### CS
     // _this is our factory for binding any itteratable functions to._
     //
     // CS transforms collections into the functional suite.
@@ -47,7 +47,7 @@
       );
     }
 
-    // ###$
+    // ### $
     // _this is our main entrypoint for most users / use cases._
     // - **arg** `string | collection | HTML Element` :: selector css selector, dom node, or previously built collection.
     // - **returns** `factory` :: new instance of CS
@@ -65,11 +65,11 @@
       return new CS(collection);
     }
 
-    //###$.extend
+    //### $.extend
     //_extend has two purposes_
     //
     //_**first:**_ add functionality to the main `$` prototype, this is the case for `$.ajax` or any global like bindings. You should pass functional extenstions as on `Object` and we will add it into the `$` prototype.
-    //####example:
+    //#### example:
     //```javascript
     //$.extend({
     //  test: function(str) {
@@ -78,8 +78,8 @@
     //  }
     //});
     //```
-    //_**second:**_ merge two objects on top of eachother. You should pass your original object as the first argument, and the merging object as the second argument._
-    //####example:
+    //_**second:**_ merge two objects on top of eachother. You should pass your original object as the first argument, and the merging object as the second argument.
+    //#### example:
     //```javascript
     //let merged = $.extend({foo: 'bar'}, {hello: 'world'});
     ////{foo: 'bar', hello: 'world'}
@@ -103,7 +103,7 @@
       return _this;
     };
 
-    //####TODO: Write documentation on $.plugin
+    //#### TODO: Write documentation on $.plugin
     $.plugin = function (name, func) {
       CS.prototype[name] = func;
     };

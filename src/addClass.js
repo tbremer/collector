@@ -1,10 +1,10 @@
-// ###addClass
+// ### addClass
 // _addClass should take collections and add passed class name if they class name isn't already on the node_
 // - **memberof** class api
 // - **arg** `string` :: class name to be added to all nodes in collection.
 // - **returns** modified collection
 //
-// ####example
+// #### example
 // ```html
 // <div class="example">Hello World</div>
 // ```
