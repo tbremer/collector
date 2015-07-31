@@ -16,7 +16,8 @@
     left: 0;
     width: 150px;
     height: 100vh;
-    padding-right: 3vw;
+    padding: 15px;
+    box-shadow: inset -10px 0 8px -8px rgba(0, 128, 128, .2);
   }
   .main-navigation .source {
     display: block;
