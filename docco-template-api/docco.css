@@ -76,6 +76,13 @@
 
   */
 
+  pre {
+    margin-bottom: 0;
+  }
+  pre + pre {
+    margin-top: 0;
+  }
+
   pre code {
     display: block; padding: 0.5em;
     color: #000;

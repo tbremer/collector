@@ -52,23 +52,24 @@
     
     
     <section class="content-block cf">
+      
       <aside class="content-block__documentation ">
         <h3 id="hasclass">hasClass</h3>
-<p> <em>hasClass should return true if any of the nodes contain the class you sent in</em></p>
+<p><em>hasClass should return true if any of the nodes contain the class you sent in</em></p>
 <ul>
 <li><strong>memberof</strong> class api</li>
 <li><strong>arg</strong> <code>string</code> :: class name to be checked across all nodes in collection.</li>
-<li><p><strong>returns</strong> boolean</p>
-<h4 id="example">example</h4>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"test active"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<pre><code class="lang-javascript">$(<span class="hljs-string">'.test'</span>).hasClass(<span class="hljs-string">'active'</span>);
-<span class="hljs-comment">// true</span>
-</code></pre>
-</li>
+<li><strong>returns</strong> boolean</li>
 </ul>
+<h4 id="example">example</h4>
+<pre><code class="lang-html"> <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"test active"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-javascript"> $(<span class="hljs-string">'.test'</span>).hasClass(<span class="hljs-string">'active'</span>);
+ <span class="hljs-comment">// true</span>
+</code></pre>
 
       </aside>
+      
       
       <code class="content-block__code">
         <div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>) </span>{

@@ -27,9 +27,11 @@
     <% for (var i=0, l=sections.length; i<l; i++) { %>
     <% var section = sections[i]; %>
     <section class="content-block cf">
+      <% if (section.docsHtml.replace(/\s/gm, '') != '') { %>
       <aside class="content-block__documentation ">
         <%= section.docsHtml %>
       </aside>
+      <% } %>
       <% if (section.codeText.replace(/\s/gm, '') != '') { %>
       <code class="content-block__code">
         <%= section.codeHtml %>
