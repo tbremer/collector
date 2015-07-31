@@ -1,10 +1,10 @@
-// ###removeClass
+// ### removeClass
 // _removeClass should take collections and remove the passed class name on any node that has it_
 // - **memberof** class api
 // - **arg** `string` :: class name to be removed across all nodes in collection.
 // - **returns** modified collection
 //
-// ####example
+// #### example
 // ```html
 // <div class="example test">Hello World</div>
 // ```

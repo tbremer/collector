@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="<%= css %>" media="all" charset="utf-8" />
+</head>
+
+<% var hasNav = (sources.length > 1 ? 'has-navigation' : ''); %>
+<body class="<%= hasNav %>">
+  <header class="main-header">
+  </header>
+  <% if (sources.length > 1) { %>
+    <nav class="main-navigation">
+    <% for (var i=0, l=sources.length; i<l; i++) { %>
+      <% var source = sources[i]; %>
+      <a class="source" href="<%= path.basename(destination(source)) %>">
+        <%= path.basename(source) %>
+      </a>
+    <% } %>
+    </nav>
+  <% } %>
+
+  <article class="page-content">
+    <% for (var i=0, l=sections.length; i<l; i++) { %>
+    <% var section = sections[i]; %>
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <%= section.docsHtml %>
+      </aside>
+      <% if (section.codeText.replace(/\s/gm, '') != '') { %>
+      <code class="content-block__code">
+        <%= section.codeHtml %>
+      </code>
+      <% } %>
+      </section>
+      <% } %>
+  </article>
+</body>
+</html>

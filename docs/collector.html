@@ -1,60 +1,84 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>collector.js</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-  <link rel="stylesheet" media="all" href="docco.css" />
+  <link rel="stylesheet" href="docco.css" media="all" charset="utf-8" />
 </head>
-<body>
-  <div id="container">
-    <div id="background"></div>
+
+
+<body class="has-navigation">
+  <header class="main-header">
+  </header>
+  
+    <nav class="main-navigation">
     
-    <ul class="sections">
-        
-          <li id="title">
-              <div class="annotation">
-                  <h1>collector.js</h1>
-              </div>
-          </li>
-        
-        
-        
-        <li id="section-1">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-1">&#182;</a>
-              </div>
-              <pre><code>CollectorJS
+      
+      <a class="source" href="addClass.html">
+        addClass.js
+      </a>
+    
+      
+      <a class="source" href="children.html">
+        children.js
+      </a>
+    
+      
+      <a class="source" href="collector.html">
+        collector.js
+      </a>
+    
+      
+      <a class="source" href="find.html">
+        find.js
+      </a>
+    
+      
+      <a class="source" href="hasClass.html">
+        hasClass.js
+      </a>
+    
+      
+      <a class="source" href="removeClass.html">
+        removeClass.js
+      </a>
+    
+    </nav>
+  
+
+  <article class="page-content">
+    
+    
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <pre><code>CollectorJS
 http:<span class="hljs-comment">//collectorjs.com</span>
 (c) <span class="hljs-number">2015</span> Tom Bremer - @_tbremer - github.com/tbremer
 Collector may be freely distributed under the MIT license
 </code></pre>
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
+      </aside>
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>
 (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">const</span> collector = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <h3 id="cs">CS</h3>
+  <span class="hljs-keyword">const</span> collector = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div>
+      </code>
+      
+      </section>
+      
+    
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <h3 id="cs">CS</h3>
 <p><em>this is our factory for binding any itteratable functions to.</em></p>
 <p>CS transforms collections into the functional suite.
 All plugins modify CS’ prototype chain.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CS</span>(<span class="hljs-params">collection</span>) </span>{
+      </aside>
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CS</span>(<span class="hljs-params">collection</span>) </span>{
       <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>,
         len = collection.length;
       <span class="hljs-keyword">for</span>(; i &lt; len; i++) {
@@ -66,86 +90,78 @@ All plugins modify CS’ prototype chain.</p>
       <span class="hljs-keyword">this</span>.length = len;
       <span class="hljs-keyword">this</span>.some = <span class="hljs-built_in">Array</span>.prototype.some;
       <span class="hljs-keyword">this</span>.splice = <span class="hljs-built_in">Array</span>.prototype.splice;
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>Simple regex check to see if <code>string</code> selectors are simple (contain no spaces)</p>
+    }</pre></div>
+      </code>
+      
+      </section>
+      
+    
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <p>Simple regex check to see if <code>string</code> selectors are simple (contain no spaces)</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimple</span>(<span class="hljs-params">selector</span>) </span>{
+      </aside>
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimple</span>(<span class="hljs-params">selector</span>) </span>{
       <span class="hljs-keyword">return</span> (<span class="hljs-regexp">/ /g</span>.test(selector) === <span class="hljs-literal">false</span>);
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>Check if a selector is a simple ID.</p>
+    }</pre></div>
+      </code>
+      
+      </section>
+      
+    
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <p>Check if a selector is a simple ID.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleID</span>(<span class="hljs-params">selector</span>) </span>{
+      </aside>
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleID</span>(<span class="hljs-params">selector</span>) </span>{
       <span class="hljs-keyword">return</span> (
         (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">`string`</span>) &amp;&amp;
         (_isSimple(selector)) &amp;&amp;
         (selector[<span class="hljs-number">0</span>] === <span class="hljs-string">`#`</span>)
       );
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              <p>Check if a selector is a simple class.</p>
+    }</pre></div>
+      </code>
+      
+      </section>
+      
+    
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <p>Check if a selector is a simple class.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleClass</span>(<span class="hljs-params">selector</span>) </span>{
+      </aside>
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_isSimpleClass</span>(<span class="hljs-params">selector</span>) </span>{
       <span class="hljs-keyword">return</span> (
         (<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">`string`</span>) &amp;&amp;
         (_isSimple(selector)) &amp;&amp;
         (selector[<span class="hljs-number">0</span>] === <span class="hljs-string">`.`</span>)
       );
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
-              </div>
-              <h3 id="-">$</h3>
+    }</pre></div>
+      </code>
+      
+      </section>
+      
+    
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <h3 id="-">$</h3>
 <p><em>this is our main entrypoint for most users / use cases.</em></p>
 <ul>
 <li><strong>arg</strong> <code>string | collection | HTML Element</code> :: selector css selector, dom node, or previously built collection.</li>
 <li><strong>returns</strong> <code>factory</code> :: new instance of CS</li>
 </ul>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">$</span>(<span class="hljs-params">selector</span>) </span>{
+      </aside>
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">$</span>(<span class="hljs-params">selector</span>) </span>{
       <span class="hljs-keyword">let</span> collection, cleanedSelector;
 
       <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> selector === <span class="hljs-string">`string`</span>) { cleanedSelector = selector.slice(<span class="hljs-number">1</span>); }
@@ -157,18 +173,15 @@ All plugins modify CS’ prototype chain.</p>
             (selector.constructor === <span class="hljs-built_in">Array</span>) ? selector : [] );
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CS(collection);
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-7">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
-              </div>
-              <h3 id="-extend">$.extend</h3>
+    }</pre></div>
+      </code>
+      
+      </section>
+      
+    
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <h3 id="-extend">$.extend</h3>
 <p><em>extend has two purposes</em></p>
 <p><em><strong>first:</strong></em> add functionality to the main <code>$</code> prototype, this is the case for <code>$.ajax</code> or any global like bindings. You should pass functional extenstions as on <code>Object</code> and we will add it into the <code>$</code> prototype.</p>
 <h4 id="example-">example:</h4>
@@ -185,9 +198,10 @@ All plugins modify CS’ prototype chain.</p>
 <span class="hljs-comment">//{foo: 'bar', hello: 'world'}</span>
 </code></pre>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    $.extend = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
+      </aside>
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>    $.extend = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
       <span class="hljs-keyword">let</span> _this = <span class="hljs-keyword">this</span>, i;
       <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &gt; <span class="hljs-number">2</span>) {
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`$.extend expects at most 2 arguments. Old object and New object`</span>);
@@ -204,22 +218,20 @@ All plugins modify CS’ prototype chain.</p>
       }
 
       <span class="hljs-keyword">return</span> _this;
-    };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-8">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
-              </div>
-              <h4 id="todo-write-documentation-on-plugin">TODO: Write documentation on $.plugin</h4>
+    };</pre></div>
+      </code>
+      
+      </section>
+      
+    
+    <section class="content-block cf">
+      <aside class="content-block__documentation ">
+        <h4 id="todo-write-documentation-on-plugin">TODO: Write documentation on $.plugin</h4>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    $.plugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, func</span>) </span>{
+      </aside>
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>    $.plugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, func</span>) </span>{
       CS.prototype[name] = func;
     };
 
@@ -228,11 +240,11 @@ All plugins modify CS’ prototype chain.</p>
 
   <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.$ === <span class="hljs-literal">undefined</span>) { <span class="hljs-built_in">window</span>.$ = collector; }
   <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.collector === <span class="hljs-literal">undefined</span>) { <span class="hljs-built_in">window</span>.collector = collector; }
-})();</pre></div></div>
-            
-        </li>
-        
-    </ul>
-  </div>
+})();</pre></div>
+      </code>
+      
+      </section>
+      
+  </article>
 </body>
 </html>
