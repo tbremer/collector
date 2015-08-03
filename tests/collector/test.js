@@ -62,3 +62,56 @@ describe('$.plugin', () => {
     expect($().test()).to.equal(true);
   });
 });
+
+describe('$.matches', () => {
+  it('should consume arrays', () => {
+    let $nodes = $('#collector-selection').children(),
+        arr = [];
+
+    for (let i = 0; i < $nodes.length; i++) {
+      arr[i] = $nodes[i];
+    }
+
+    let assert = $.matches(arr, '.test').length,
+        expected = 6;
+
+    expect(assert).to.equal(expected);
+  });
+
+  it('should consume collections', () => {
+    let assert = $.matches($('#collector-selection').children(), '.num-1').length,
+        expected = 1;
+
+    expect(assert).to.equal(expected);
+  });
+
+  it('should consume individual nodes', () => {
+    let node = document.getElementById('collector-matches'),
+        assert = $.matches(node, '.test').length,
+        expected = 1;
+
+    expect(assert).to.equal(expected);
+  });
+
+  it('should return collection of matching elements', () => {
+    let expected = $.matches($('#collector-children-01').find('.child-child-child'), '.num-2'),
+        assert = {
+          length: 1,
+          constructor: Array
+        };
+
+    expect(expected.constructor).to.equal(assert.constructor);
+    expect(expected.length).to.equal(assert.length);
+  });
+
+  it('should return a null collection if there are no matching elements', () => {
+    let expected = $.matches($('#collector-child-03'), '.not-gonna-match'),
+        assert = {
+          constructor: Array,
+          length: 0
+        };
+
+    expect(expected.constructor).to.equal(assert.constructor);
+    expect(expected.length).to.equal(assert.length);
+  });
+});

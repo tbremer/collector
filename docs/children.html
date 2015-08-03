@@ -81,9 +81,7 @@ $(<span class="hljs-string">'.parent'</span>).children(<span class="hljs-string"
       <code class="content-block__code">
         <div class='highlight'><pre>(($) =&gt; {
   $.plugin(<span class="hljs-string">`children`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>{
-    <span class="hljs-keyword">let</span> kids = [],
-        EP = Element.prototype,
-        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+    <span class="hljs-keyword">let</span> kids = [];
 
     <span class="hljs-keyword">this</span>.each((el) =&gt; {
       <span class="hljs-keyword">if</span> (el !== <span class="hljs-literal">null</span>) {
@@ -97,9 +95,7 @@ $(<span class="hljs-string">'.parent'</span>).children(<span class="hljs-string"
     }
 
 
-    <span class="hljs-keyword">return</span> kids.filter((el) =&gt; {
-      <span class="hljs-keyword">return</span> matches.call(el, context);
-    });
+    <span class="hljs-keyword">return</span> $.matches(kids, context);
   });
 })(collector);</pre></div>
       </code>

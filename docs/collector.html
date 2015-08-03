@@ -251,6 +251,33 @@ All plugins modify CS’ prototype chain.</p>
       <code class="content-block__code">
         <div class='highlight'><pre>    $.plugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, func</span>) </span>{
       CS.prototype[name] = func;
+    };</pre></div>
+      </code>
+      
+      </section>
+      
+    
+    <section class="content-block cf">
+      
+      <aside class="content-block__documentation ">
+        <h4 id="todo-write-documentation-on-matches">TODO: Write documentation on $.matches</h4>
+
+      </aside>
+      
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>    $.matches = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">collection, context</span>) </span>{
+      <span class="hljs-keyword">if</span>(collection.constructor !== <span class="hljs-built_in">Array</span> &amp;&amp; collection <span class="hljs-keyword">instanceof</span> CS === <span class="hljs-literal">false</span>) {
+        collection = [collection];
+      }
+      <span class="hljs-keyword">let</span> EP = Element.prototype,
+          matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+
+      <span class="hljs-keyword">return</span> collection.filter((node) =&gt; {
+        <span class="hljs-keyword">if</span> (node !== <span class="hljs-literal">null</span> &amp;&amp; (node.nodeType === <span class="hljs-number">1</span> || node.nodeType === <span class="hljs-number">9</span>)) {
+          <span class="hljs-keyword">return</span> matches.call(node, context);
+        }
+      });
     };
 
     <span class="hljs-keyword">return</span> $;

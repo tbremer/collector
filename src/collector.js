@@ -108,6 +108,21 @@
       CS.prototype[name] = func;
     };
 
+    //#### TODO: Write documentation on $.matches
+    $.matches = function(collection, context) {
+      if(collection.constructor !== Array && collection instanceof CS === false) {
+        collection = [collection];
+      }
+      let EP = Element.prototype,
+          matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+
+      return collection.filter((node) => {
+        if (node !== null && (node.nodeType === 1 || node.nodeType === 9)) {
+          return matches.call(node, context);
+        }
+      });
+    };
+
     return $;
   })();
 

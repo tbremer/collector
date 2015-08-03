@@ -20,9 +20,7 @@
 // ```
 (($) => {
   $.plugin(`children`, function (context) {
-    let kids = [],
-        EP = Element.prototype,
-        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector;
+    let kids = [];
 
     this.each((el) => {
       if (el !== null) {
@@ -36,8 +34,6 @@
     }
 
 
-    return kids.filter((el) => {
-      return matches.call(el, context);
-    });
+    return $.matches(kids, context);
   });
 })(collector);

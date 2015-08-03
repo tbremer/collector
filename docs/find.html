@@ -86,25 +86,19 @@ $(<span class="hljs-string">'.parent'</span>).children(<span class="hljs-string"
       <span class="hljs-keyword">return</span> $();
     }
     count = count || <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">let</span> EP = Element.prototype,
-        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector,
-        kids = [], _kids;
+    <span class="hljs-keyword">let</span> kids = [];
 
     <span class="hljs-keyword">this</span>.each((el) =&gt; {
-      kids.push([].slice.call(el.childNodes));
+      kids.push([].slice.call(el.getElementsByTagName(<span class="hljs-string">'*'</span>)));
     });
 
-    _kids = kids.concat.apply([], kids).filter((el) =&gt; {
-      <span class="hljs-keyword">if</span>(el.nodeType === <span class="hljs-number">1</span>) {
-        <span class="hljs-keyword">return</span> matches.call(el, context);
-      }
-    });
+    kids = $.matches(kids.concat.apply([], kids), context);
 
     <span class="hljs-keyword">if</span> (count !== <span class="hljs-literal">null</span>) {
-      _kids = _kids.slice(<span class="hljs-number">0</span>, count);
+      kids = kids.slice(<span class="hljs-number">0</span>, count);
     }
 
-    <span class="hljs-keyword">return</span> _kids;
+    <span class="hljs-keyword">return</span> kids;
   });
 })(collector);</pre></div>
       </code>

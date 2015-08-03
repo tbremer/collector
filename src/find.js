@@ -25,24 +25,18 @@
       return $();
     }
     count = count || null;
-    let EP = Element.prototype,
-        matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector,
-        kids = [], _kids;
+    let kids = [];
 
     this.each((el) => {
-      kids.push([].slice.call(el.childNodes));
+      kids.push([].slice.call(el.getElementsByTagName('*')));
     });
 
-    _kids = kids.concat.apply([], kids).filter((el) => {
-      if(el.nodeType === 1) {
-        return matches.call(el, context);
-      }
-    });
+    kids = $.matches(kids.concat.apply([], kids), context);
 
     if (count !== null) {
-      _kids = _kids.slice(0, count);
+      kids = kids.slice(0, count);
     }
 
-    return _kids;
+    return kids;
   });
 })(collector);
