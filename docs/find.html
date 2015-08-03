@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>find.js</title>
   <link rel="stylesheet" href="docco.css" media="all" charset="utf-8" />
+  <script src="../dist/collector.js" charset="utf-8"></script>
 </head>
 
 
@@ -16,32 +17,32 @@
     
       
       <a class="source" href="addClass.html">
-        addClass.js
+        <span class="title">addClass.js</span>
       </a>
     
       
       <a class="source" href="children.html">
-        children.js
+        <span class="title">children.js</span>
       </a>
     
       
       <a class="source" href="collector.html">
-        collector.js
+        <span class="title">collector.js</span>
       </a>
     
       
       <a class="source" href="find.html">
-        find.js
+        <span class="title">find.js</span>
       </a>
     
       
       <a class="source" href="hasClass.html">
-        hasClass.js
+        <span class="title">hasClass.js</span>
       </a>
     
       
       <a class="source" href="removeClass.html">
-        removeClass.js
+        <span class="title">removeClass.js</span>
       </a>
     
     </nav>
@@ -53,13 +54,38 @@
     
     <section class="content-block cf">
       
+      <aside class="content-block__documentation ">
+        <h3 id="find">find</h3>
+<p><em>find takes a collection and returns children dom nodes that match a passed context, alternatively you can pass an integer and find will return when it has met that number of children.</em></p>
+<ul>
+<li><strong>memberof</strong> traversal api</li>
+<li><strong>arg</strong> <code>string</code> :: context to check nodes against</li>
+<li><strong>arg</strong> <code>integer</code> [not required] :: limit the number of returned noeds</li>
+<li><strong>returns</strong> collection</li>
+</ul>
+<h4 id="example">example</h4>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"parent"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"child"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"child context"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"child"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-javascript">$(<span class="hljs-string">'.parent'</span>).find(<span class="hljs-string">'.child'</span>);
+<span class="hljs-comment">// ['div.child', 'div.child.context', 'div.child']</span>
+$(<span class="hljs-string">'.parent'</span>).children(<span class="hljs-string">'.child'</span>, <span class="hljs-number">2</span>)
+<span class="hljs-comment">// ['div.child', 'div.child.context']</span>
+</code></pre>
+
+      </aside>
+      
       
       <code class="content-block__code">
         <div class='highlight'><pre>(($) =&gt; {
-  $.plugin(<span class="hljs-string">'find'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+  $.plugin(<span class="hljs-string">'find'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context, count</span>) </span>{
     <span class="hljs-keyword">if</span> (!context) {
       <span class="hljs-keyword">return</span> $();
     }
+    count = count || <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">let</span> EP = Element.prototype,
         matches = EP.matches || EP.webkitMatchesSelector || EP.mozMatchesSelector || EP.msMatchesSelector,
         kids = [], _kids;
@@ -68,11 +94,17 @@
       kids.push([].slice.call(el.childNodes));
     });
 
-    <span class="hljs-keyword">return</span> kids.concat.apply([], kids).filter((el) =&gt; {
+    _kids = kids.concat.apply([], kids).filter((el) =&gt; {
       <span class="hljs-keyword">if</span>(el.nodeType === <span class="hljs-number">1</span>) {
         <span class="hljs-keyword">return</span> matches.call(el, context);
       }
     });
+
+    <span class="hljs-keyword">if</span> (count !== <span class="hljs-literal">null</span>) {
+      _kids = _kids.slice(<span class="hljs-number">0</span>, count);
+    }
+
+    <span class="hljs-keyword">return</span> _kids;
   });
 })(collector);</pre></div>
       </code>
@@ -80,5 +112,17 @@
       </section>
       
   </article>
+
+  <script>
+    var nodes = $('.source');
+    var currPage = new RegExp(location.pathname.split('/')[(location.pathname.split('/').length - 1)].split('.')[0]);
+
+    nodes.each(function(node) {
+      if (currPage.test(node.innerText)) {
+        $(node).addClass('current-page');
+      }
+    })
+
+  </script>
 </body>
 </html>

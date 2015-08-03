@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>removeClass.js</title>
   <link rel="stylesheet" href="docco.css" media="all" charset="utf-8" />
+  <script src="../dist/collector.js" charset="utf-8"></script>
 </head>
 
 
@@ -16,32 +17,32 @@
     
       
       <a class="source" href="addClass.html">
-        addClass.js
+        <span class="title">addClass.js</span>
       </a>
     
       
       <a class="source" href="children.html">
-        children.js
+        <span class="title">children.js</span>
       </a>
     
       
       <a class="source" href="collector.html">
-        collector.js
+        <span class="title">collector.js</span>
       </a>
     
       
       <a class="source" href="find.html">
-        find.js
+        <span class="title">find.js</span>
       </a>
     
       
       <a class="source" href="hasClass.html">
-        hasClass.js
+        <span class="title">hasClass.js</span>
       </a>
     
       
       <a class="source" href="removeClass.html">
-        removeClass.js
+        <span class="title">removeClass.js</span>
       </a>
     
     </nav>
@@ -87,5 +88,17 @@
       </section>
       
   </article>
+
+  <script>
+    var nodes = $('.source');
+    var currPage = new RegExp(location.pathname.split('/')[(location.pathname.split('/').length - 1)].split('.')[0]);
+
+    nodes.each(function(node) {
+      if (currPage.test(node.innerText)) {
+        $(node).addClass('current-page');
+      }
+    })
+
+  </script>
 </body>
 </html>

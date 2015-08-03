@@ -20,4 +20,12 @@ describe('find', function () {
 
     expect(assert).to.equal(expected);
   });
+
+  it('should take an integer as a secondary argument and return that number of children', () => {
+    let assert = $('#collector-find-01').find('.find-child', 2).length,
+        expected = 2;
+
+
+    expect(assert).to.equal(expected);
+  })
 });

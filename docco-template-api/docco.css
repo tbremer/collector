@@ -19,10 +19,34 @@
     padding: 15px;
     box-shadow: 0 0 4px -1px rgba(0,128,128, 1);
     z-index: 1;
+    overflow-x: scroll;
   }
   .main-navigation .source {
     display: block;
-    width: 100%;
+    color: #131313;
+    text-decoration: none;
+  }
+  .main-navigation .source + .source {
+    margin-top: 4px;
+  }
+  .main-navigation .source .title {
+    display: inline-block;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 3px;
+    color: #131313;
+  }
+  .main-navigation .source:hover .title {
+    color: #535353;
+    border-bottom-color: #131313;
+  }
+  .main-navigation .current-page .title {
+    color: rgba(0,128,128, 1);
+    border-bottom-color: rgba(0,128,128, 1);
+  }
+  .main-navigation .current-page:hover .title {
+    color: rgba(0,128,128, 1);
+    border-bottom-color: #535353;
   }
   .page-content {
     position: relative;
@@ -78,6 +102,7 @@
 
   pre {
     margin-bottom: 0;
+    background: #f8f8ff;
   }
   pre + pre {
     margin-top: 0;
@@ -86,7 +111,6 @@
   pre code {
     display: block; padding: 0.5em;
     color: #000;
-    background: #f8f8ff
   }
 
   pre .hljs-comment,

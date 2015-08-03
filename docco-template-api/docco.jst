@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title><%= title %></title>
   <link rel="stylesheet" href="<%= css %>" media="all" charset="utf-8" />
+  <script src="../dist/collector.js" charset="utf-8"></script>
 </head>
 
 <% var hasNav = (sources.length > 1 ? 'has-navigation' : ''); %>
@@ -16,7 +17,7 @@
     <% for (var i=0, l=sources.length; i<l; i++) { %>
       <% var source = sources[i]; %>
       <a class="source" href="<%= path.basename(destination(source)) %>">
-        <%= path.basename(source) %>
+        <span class="title"><%= path.basename(source) %></span>
       </a>
     <% } %>
     </nav>
@@ -40,5 +41,17 @@
       </section>
       <% } %>
   </article>
+
+  <script>
+    var nodes = $('.source');
+    var currPage = new RegExp(location.pathname.split('/')[(location.pathname.split('/').length - 1)].split('.')[0]);
+
+    nodes.each(function(node) {
+      if (currPage.test(node.innerText)) {
+        $(node).addClass('current-page');
+      }
+    })
+
+  </script>
 </body>
 </html>
