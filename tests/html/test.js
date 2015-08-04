@@ -7,10 +7,10 @@ describe('html', () => {
   });
 
   it('should set an HTML string', () => {
-    $('#collector-html').html('1234');
+    $('#collector-html').html(`<div class="html">Goodbye friend</div>`);
 
     let assert = $('#collector-html').html(),
-        expected = '1234';
+        expected = `<div class="html">Goodbye friend</div>`;
 
     expect(assert).to.equal(expected);
   });

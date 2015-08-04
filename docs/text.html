@@ -64,12 +64,57 @@
     
     <section class="content-block cf">
       
+      <aside class="content-block__documentation ">
+        <h2 id="text">text</h2>
+<p><em>text takes either null or a sting and returns either a string or a modified collection</em></p>
+<ul>
+<li><strong>memberof</strong> contents apis</li>
+<li><strong>arg</strong> <code>str</code> [not required]<ul>
+<li>if <code>null</code> returns innerText of first matched element</li>
+<li>if <code>true</code> returns all text nodes including hidden values (style and script)</li>
+<li>if <code>string</code> modifies all matched elements text to match string.
+<strong>returns</strong> String or collection</li>
+</ul>
+</li>
+</ul>
+<h4 id="example">example</h4>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"test"</span>&gt;</span>
+    This is a Test
+    <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+    <span class="hljs-tag">body</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#131313</span></span></span>;
+    }</span>
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-javascript">$(<span class="hljs-string">'.test'</span>).text();
+<span class="hljs-comment">// `This is a Test`</span>
+
+$(<span class="hljs-string">'.test'</span>).text(<span class="hljs-literal">true</span>);
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">//   This is a Test</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">//    body {</span>
+<span class="hljs-comment">//        color: #131313;</span>
+<span class="hljs-comment">//    }</span>
+<span class="hljs-comment">//</span>
+
+$(<span class="hljs-string">'.test'</span>).text(<span class="hljs-string">'Hello World!'</span>)
+<span class="hljs-comment">// ['div.test']</span>
+</code></pre>
+
+      </aside>
+      
       
       <code class="content-block__code">
         <div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>) </span>{
   $.plugin(<span class="hljs-string">`text`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) </span>{
-    <span class="hljs-keyword">if</span> (str === <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-keyword">if</span> (str === <span class="hljs-literal">undefined</span> || str === <span class="hljs-literal">false</span>) {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>[<span class="hljs-number">0</span>].innerText;
+    }
+
+    <span class="hljs-keyword">if</span> (str === <span class="hljs-literal">true</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>[<span class="hljs-number">0</span>].textContent;
     }
 
     <span class="hljs-keyword">this</span>.each((node) =&gt; {
