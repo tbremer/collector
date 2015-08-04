@@ -16,11 +16,15 @@
       for(; i < len; i++) {
         this[i] = collection[i];
       }
+      this.concat = Array.prototype.concat;
       this.each = Array.prototype.forEach;
       this.filter = Array.prototype.filter;
       this.indexOf = Array.prototype.indexOf;
       this.length = len;
+      this.map = Array.prototype.map;
+      this.push = Array.prototype.push;
       this.some = Array.prototype.some;
+      this.slice = Array.prototype.slice;
       this.splice = Array.prototype.splice;
     }
 
