@@ -1,11 +1,11 @@
 // ## text
-// _text takes either null or a sting and returns either a string or a modified collection_
-// - **memberof** contents apis
+// _text takes either null or a string and returns either a string or a modified collection_
+// - **memberof** contents api
 // - **arg** `str` [not required]
 //   - if `null` returns innerText of first matched element
 //   - if `true` returns all text nodes including hidden values (style and script)
 //   - if `string` modifies all matched elements text to match string.
-// **returns** String or collection
+// - **returns** String or collection
 //
 // #### example
 // ```html

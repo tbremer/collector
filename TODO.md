@@ -14,7 +14,7 @@
   - [x] find
   - [x] hasClass
   - [ ] height
-  - [ ] html
+  - [x] html
   - [x] indexOf
   - [x] map
   - [ ] parent
