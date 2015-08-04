@@ -306,6 +306,20 @@
   });
 })(collector);
 
+(function ($) {
+  $.plugin('html', function (str) {
+    if (str === undefined) {
+      return this[0].innerHTML.trim();
+    }
+
+    this.each(function (node) {
+      node.innerHTML = str;
+    });
+
+    return this;
+  });
+})(collector);
+
 // ### removeClass
 // _removeClass should take collections and remove the passed class name on any node that has it_
 // - **memberof** class api
@@ -326,6 +340,20 @@
   $.plugin('removeClass', function (klass) {
     this.each(function (node) {
       node.className = node.className.replace(klass, '').trim();
+    });
+
+    return this;
+  });
+})(collector);
+
+(function ($) {
+  $.plugin('text', function (str) {
+    if (str === undefined) {
+      return this[0].innerText;
+    }
+
+    this.each(function (node) {
+      node.innerText = str;
     });
 
     return this;

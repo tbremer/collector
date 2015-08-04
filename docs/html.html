@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>hasClass.js</title>
+  <title>html.js</title>
   <link rel="stylesheet" href="docco.css" media="all" charset="utf-8" />
   <script src="../dist/collector.js" charset="utf-8"></script>
 </head>
@@ -64,33 +64,19 @@
     
     <section class="content-block cf">
       
-      <aside class="content-block__documentation ">
-        <h3 id="hasclass">hasClass</h3>
-<p><em>hasClass should return true if any of the nodes contain the class you sent in</em></p>
-<ul>
-<li><strong>memberof</strong> class api</li>
-<li><strong>arg</strong> <code>string</code> :: class name to be checked across all nodes in collection.</li>
-<li><strong>returns</strong> boolean</li>
-</ul>
-<h4 id="example">example</h4>
-<pre><code class="lang-html"> <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"test active"</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<pre><code class="lang-javascript"> $(<span class="hljs-string">'.test'</span>).hasClass(<span class="hljs-string">'active'</span>);
- <span class="hljs-comment">// true</span>
-</code></pre>
-
-      </aside>
-      
       
       <code class="content-block__code">
         <div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>) </span>{
-  $.plugin(<span class="hljs-string">`hasClass`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">klass</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.some((node) =&gt; {
-      <span class="hljs-keyword">let</span> cn = node.className,
-        reg = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(klass);
+  $.plugin(<span class="hljs-string">`html`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) </span>{
+    <span class="hljs-keyword">if</span> (str === <span class="hljs-literal">undefined</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>[<span class="hljs-number">0</span>].innerHTML.trim();
+    }
 
-      <span class="hljs-keyword">return</span> (reg.test(cn));
+    <span class="hljs-keyword">this</span>.each((node) =&gt; {
+      node.innerHTML = str;
     });
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
   });
 })(collector);</pre></div>
       </code>
