@@ -57,7 +57,7 @@
       <aside class="content-block__documentation ">
         <pre><code>CollectorJS
 http:<span class="hljs-comment">//collectorjs.com</span>
-(c) <span class="hljs-number">2015</span> Tom Bremer - @_tbremer - github.com/tbremer
+(c) <span class="hljs-number">2015</span> Tom Bremer / @_tbremer / github.com/tbremer
 Collector may be freely distributed under the MIT license
 </code></pre>
       </aside>
@@ -75,7 +75,7 @@ Collector may be freely distributed under the MIT license
     <section class="content-block cf">
       
       <aside class="content-block__documentation ">
-        <h3 id="cs">CS</h3>
+        <h2 id="cs">CS</h2>
 <p><em>this is our factory for binding any itteratable functions to.</em></p>
 <p>CS transforms collections into the functional suite.
 All plugins modify CS’ prototype chain.</p>
@@ -164,7 +164,7 @@ All plugins modify CS’ prototype chain.</p>
     <section class="content-block cf">
       
       <aside class="content-block__documentation ">
-        <h3 id="-">$</h3>
+        <h2 id="-">$</h2>
 <p><em>this is our main entrypoint for most users / use cases.</em></p>
 <ul>
 <li><strong>arg</strong> <code>string | collection | HTML Element</code> :: selector css selector, dom node, or previously built collection.</li>
@@ -196,7 +196,12 @@ All plugins modify CS’ prototype chain.</p>
     <section class="content-block cf">
       
       <aside class="content-block__documentation ">
-        <h3 id="-extend">$.extend</h3>
+        <h2 id="-extend">$.extend</h2>
+<ul>
+<li><strong>memberof</strong> core api</li>
+<li><strong>arg</strong> obj <code>object</code> – if only this is included it adds to the $ protoype</li>
+<li><strong>arg</strong> obj2 [not required] <code>object</code> – if two objects are included it merges the second into the first</li>
+</ul>
 <p><em>extend has two purposes</em></p>
 <p><em><strong>first:</strong></em> add functionality to the main <code>$</code> prototype, this is the case for <code>$.ajax</code> or any global like bindings. You should pass functional extenstions as on <code>Object</code> and we will add it into the <code>$</code> prototype.</p>
 <h4 id="example-">example:</h4>
@@ -243,7 +248,31 @@ All plugins modify CS’ prototype chain.</p>
     <section class="content-block cf">
       
       <aside class="content-block__documentation ">
-        <h4 id="todo-write-documentation-on-plugin">TODO: Write documentation on $.plugin</h4>
+        <h2 id="-plugin">$.plugin</h2>
+<p><em>plugin allows functions to be applied to collections. they should only return collections or booleans</em></p>
+<ul>
+<li><strong>memberof</strong> core api</li>
+<li><strong>arg</strong> name <code>string</code> – the name of the function that will affect collections</li>
+<li><strong>arg</strong> func <code>function</code> – the function to be applied to collections
+there are lots of examples through the code on how to use this prototype, however</li>
+</ul>
+<h4 id="example">example</h4>
+<pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>)</span>{
+  $.plugin(<span class="hljs-string">'coolFunction'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// FROM HERE THIS REFERS TO THE COLLECTION.</span>
+    <span class="hljs-comment">// TO LOOP NODES:</span>
+    <span class="hljs-keyword">this</span>.each((el) =&gt; {
+      <span class="hljs-comment">//do magic</span>
+    });
+
+    <span class="hljs-comment">// MODIFY THIS</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+   })
+})(collector)
+
+<span class="hljs-comment">// Now you can use your function to modify nodes.</span>
+$(<span class="hljs-string">'body'</span>).children().coolFunction();
+</code></pre>
 
       </aside>
       
@@ -260,7 +289,21 @@ All plugins modify CS’ prototype chain.</p>
     <section class="content-block cf">
       
       <aside class="content-block__documentation ">
-        <h4 id="todo-write-documentation-on-matches">TODO: Write documentation on $.matches</h4>
+        <h2 id="-matches">$.matches</h2>
+<p><em>matches takes collections (as $(), as individual nodes or as an array of nodes) and a context, it returns a filtered array nodes that match your context, or an empty collection</em></p>
+<ul>
+<li><strong>memberof</strong> core api</li>
+<li><strong>arg</strong> collection <code>collection || array || dom node</code> – the set to itterate over</li>
+<li><strong>arg</strong> context <code>string</code> – what nodes get checked against.</li>
+</ul>
+<p>There are several places where this gets used <code>[$().children(), $().find(), …]</code>
+This could be use as a 2 point <code>$().hasClass()</code> function in that it will only return nodes that have whatever context is sent.</p>
+<h4 id="example">example</h4>
+<pre><code class="lang-javascript">$.matches($(<span class="hljs-string">'nav a'</span>), <span class="hljs-string">'.current'</span>)
+<span class="hljs-comment">// ['a.current']</span>
+$.matches($(<span class="hljs-string">'ul.users .logged-in'</span>), <span class="hljs-string">'a'</span>)
+<span class="hljs-comment">// ['a.user-link']</span>
+</code></pre>
 
       </aside>
       

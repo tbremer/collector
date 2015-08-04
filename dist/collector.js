@@ -1,13 +1,13 @@
 //     CollectorJS
 //     http://collectorjs.com
-//     (c) 2015 Tom Bremer - @_tbremer - github.com/tbremer
+//     (c) 2015 Tom Bremer / @_tbremer / github.com/tbremer
 //     Collector may be freely distributed under the MIT license
 
 'use strict';
 
 (function () {
   var collector = (function () {
-    // ### CS
+    // ## CS
     // _this is our factory for binding any itteratable functions to._
     //
     // CS transforms collections into the functional suite.
@@ -42,7 +42,7 @@
       return typeof selector === 'string' && _isSimple(selector) && selector[0] === '.';
     }
 
-    // ### $
+    // ## $
     // _this is our main entrypoint for most users / use cases._
     // - **arg** `string | collection | HTML Element` :: selector css selector, dom node, or previously built collection.
     // - **returns** `factory` :: new instance of CS
@@ -59,7 +59,11 @@
       return new CS(collection);
     }
 
-    //### $.extend
+    //## $.extend
+    // - **memberof** core api
+    // - **arg** obj `object` -- if only this is included it adds to the $ protoype
+    // - **arg** obj2 [not required] `object` -- if two objects are included it merges the second into the first
+    //
     //_extend has two purposes_
     //
     //_**first:**_ add functionality to the main `$` prototype, this is the case for `$.ajax` or any global like bindings. You should pass functional extenstions as on `Object` and we will add it into the `$` prototype.
@@ -98,12 +102,50 @@
       return _this;
     };
 
-    //#### TODO: Write documentation on $.plugin
+    // ## $.plugin
+    // _plugin allows functions to be applied to collections. they should only return collections or booleans_
+    // - **memberof** core api
+    // - **arg** name `string` -- the name of the function that will affect collections
+    // - **arg** func `function` -- the function to be applied to collections
+    // there are lots of examples through the code on how to use this prototype, however
+    //
+    // #### example
+    // ```javascript
+    // (function($){
+    //   $.plugin('coolFunction', function() {
+    //     // FROM HERE THIS REFERS TO THE COLLECTION.
+    //     // TO LOOP NODES:
+    //     this.each((el) => {
+    //       //do magic
+    //     });
+    //
+    //     // MODIFY THIS
+    //     return this
+    //    })
+    // })(collector)
+    //
+    // // Now you can use your function to modify nodes.
+    // $('body').children().coolFunction();
+    // ```
     $.plugin = function (name, func) {
       CS.prototype[name] = func;
     };
 
-    //#### TODO: Write documentation on $.matches
+    // ## $.matches
+    // _matches takes collections (as $(), as individual nodes or as an array of nodes) and a context, it returns a filtered array nodes that match your context, or an empty collection_
+    // - **memberof** core api
+    // - **arg** collection `collection || array || dom node` -- the set to itterate over
+    // - **arg** context `string` -- what nodes get checked against.
+    //
+    // There are several places where this gets used `[$().children(), $().find(), …]`
+    // This could be use as a 2 point `$().hasClass()` function in that it will only return nodes that have whatever context is sent.
+    // #### example
+    // ```javascript
+    // $.matches($('nav a'), '.current')
+    // // ['a.current']
+    // $.matches($('ul.users .logged-in'), 'a')
+    // // ['a.user-link']
+    // ```
     $.matches = function (collection, context) {
       if (collection.constructor !== Array && collection instanceof CS === false) {
         collection = [collection];
