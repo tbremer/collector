@@ -311,12 +311,9 @@
 })(collector);
 
 // ## html
-// _html takes either null or a string and returns either a string or a modified collection_
+// _html returns the innerHTML of the first matched element_
 // - **memberof** contents api
-// - **arg** `str` [not required]
-//   - if `null` returns innerText of first matched element
-//   - if `string` modifies all matched elements text to match string.
-// - **returns** String or Collection
+// - **returns** String
 //
 // #### example
 // ```html
@@ -331,25 +328,9 @@
 //
 // // "<a class="link" href="hello.html">Hello</a>
 // // <a class="link" href="world.html">World</a>"
-//
-// $('nav').html('<h1>Hello World</h1>');
-// ```
-// ```html
-// <nav>
-//   <h1>Hello World</h1>
-// </nav>
-// ```
 (function ($) {
-  $.plugin('html', function (str) {
-    if (str === undefined) {
-      return this[0].innerHTML.trim();
-    }
-
-    this.each(function (node) {
-      node.innerHTML = str;
-    });
-
-    return this;
+  $.plugin('html', function () {
+    return this[0].innerHTML;
   });
 })(collector);
 
@@ -380,13 +361,11 @@
 })(collector);
 
 // ## text
-// _text takes either null or a string and returns either a string or a modified collection_
+// _text returns the text of the first matched element_
 // - **memberof** contents api
-// - **arg** `str` [not required]
-//   - if `null` returns innerText of first matched element
+// - **arg** `allContent` [not required]
 //   - if `true` returns all text nodes including hidden values (style and script)
-//   - if `string` modifies all matched elements text to match string.
-// - **returns** String or collection
+// - **returns** String
 //
 // #### example
 // ```html
@@ -411,24 +390,15 @@
 // //        color: #131313;
 // //    }
 // //
-//
-// $('.test').text('Hello World!')
-// // ['div.test']
 // ```
 (function ($) {
-  $.plugin('text', function (str) {
-    if (str === undefined || str === false) {
+  $.plugin('text', function (allContent) {
+    if (allContent === undefined || allContent === false) {
       return this[0].innerText;
     }
 
-    if (str === true) {
+    if (allContent === true) {
       return this[0].textContent;
     }
-
-    this.each(function (node) {
-      node.innerText = str;
-    });
-
-    return this;
   });
 })(collector);

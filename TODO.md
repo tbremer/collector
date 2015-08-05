@@ -2,7 +2,7 @@
   - [x] $()
   - [x] $.extend
   - [x] addClass
-  - [x] attr
+  - [ ] attr
   - [x] children
   - [ ] closest
   - [x] concat
