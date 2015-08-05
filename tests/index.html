@@ -75,7 +75,7 @@
     <article id="collector-text-all" style="display: none;">
       Hello world.
       <script>
-        console.log('test')
+        var test = 'test';
       </script>
       <style>
         body {
@@ -83,6 +83,10 @@
         }
       </style>
     </article>
+
+    <article id="collector-attr-basic" party="animal"></article>
+
+    <article id="collector-attr-json" party="{type: 'people', number: 123, date: '2015-07-31'}"></article>
 
     <div id="mocha"></div>
     <script src="../node_modules/mocha/mocha.js"></script>

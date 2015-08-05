@@ -203,6 +203,12 @@
   });
 })(collector);
 
+(function ($) {
+  $.plugin('attr', function (attribute, value) {
+    console.log(Object.keys(this[0].attributes));
+  });
+})(collector);
+
 // ### children
 // _children take a collection of nodes, optionally a selector. returns a group of nodes, if context is passed in the nodes returned are only those that match the context_
 // - **memberof** traversal api
