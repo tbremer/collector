@@ -1,3 +1,4 @@
+### v 1.0 Features.
 - [ ] Core
   - [x] $()
   - [x] $.extend
@@ -6,6 +7,7 @@
   - [x] children
   - [ ] closest
   - [x] concat
+  - [ ] css
   - [ ] data
   - [x] each || forEach
   - [x] filter
@@ -27,11 +29,20 @@
   - [ ] val
   - [ ] width
 
+
 - [ ] Event
   - [ ] off
   - [ ] on
   - [ ] one
   - [ ] trigger
+
+### V 1.1 Features
+- [ ] Ajax
+  - [ ] $.ajax
+  - [ ] $.get
+  - [ ] $.getJSON
+  - [ ] $.post
+
 
 - [ ] Form
   - [ ] serialize
