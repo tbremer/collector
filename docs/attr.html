@@ -69,26 +69,45 @@
     
     <section class="content-block cf">
       
+      <aside class="content-block__documentation ">
+        <h2 id="attr">attr</h2>
+<p><em>attr returns either null, the value the first matched element’s given attribute (if that attribute is <code>JSON.parse()</code>able it will return a JSON object) or a collection</em>
+<strong>memberof</strong> attribute api
+<strong>returns</strong> Null || String || Object || Collection</p>
+<h4 id="example">example</h4>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"collector-attr-basic"</span> <span class="hljs-attribute">party</span>=<span class="hljs-value">"animal"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-javascript">$(<span class="hljs-string">'#collector-attr-basic'</span>).attr(<span class="hljs-string">'party'</span>);
+<span class="hljs-comment">// "animal"</span>
+$(<span class="hljs-string">'#collector-attr-basic'</span>).attr(<span class="hljs-string">'party'</span>, <span class="hljs-string">'people'</span>);
+$(<span class="hljs-string">'#collector-attr-basic'</span>).attr(<span class="hljs-string">'party'</span>);
+<span class="hljs-comment">// "people"</span>
+</code></pre>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"collector-attr-json"</span> <span class="hljs-attribute">party</span>=<span class="hljs-value">'{"type": "people", "number": 123, "date": "2015-07-31"}'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-javascript">$(<span class="hljs-string">'#collector-attr-json'</span>).attr(<span class="hljs-string">'party'</span>);
+<span class="hljs-comment">// {"type": "people", "number": 123, "date": "2015-07-31"}</span>
+</code></pre>
+
+      </aside>
+      
       
       <code class="content-block__code">
         <div class='highlight'><pre>(($) =&gt; {
   $.plugin(<span class="hljs-string">'attr'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">attribute, value</span>) </span>{
     <span class="hljs-keyword">if</span> (!attribute) { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; }
 
-    <span class="hljs-keyword">if</span> (attribute &amp;&amp; value === <span class="hljs-literal">undefined</span>) {
-      <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^\{(?:.+)\}$/</span>.test(<span class="hljs-keyword">this</span>[<span class="hljs-number">0</span>].getAttribute(attribute))) {
+    <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">undefined</span>) {
         <span class="hljs-keyword">try</span> {
           <span class="hljs-keyword">return</span> (<span class="hljs-built_in">JSON</span>.parse(<span class="hljs-keyword">this</span>[<span class="hljs-number">0</span>].getAttribute(attribute)));
-        } <span class="hljs-keyword">catch</span> (e) { <span class="hljs-built_in">console</span>.error(e); }
-      }
-      <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>[<span class="hljs-number">0</span>].getAttribute(attribute));
+        } <span class="hljs-keyword">catch</span> (e) {
+          <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>[<span class="hljs-number">0</span>].getAttribute(attribute));
+        }
     }
 
-    <span class="hljs-keyword">if</span> (attribute &amp;&amp; value) {
-      <span class="hljs-keyword">this</span>.each((el) =&gt; {
-        el.setAttribute(attribute, value);
-      });
-    }
+    <span class="hljs-keyword">this</span>.each((el) =&gt; {
+      el.setAttribute(attribute, value);
+    });
 
   });
 })(collector);</pre></div>

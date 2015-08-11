@@ -1,5 +1,5 @@
-//     CollectorJS
-//     http://collectorjs.com
+//     Collector
+//     https://github.com/tbremer/collector
 //     (c) 2015 Tom Bremer / @_tbremer / github.com/tbremer
 //     Collector may be freely distributed under the MIT license
 
