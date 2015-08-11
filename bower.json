@@ -1,0 +1,29 @@
+{
+  "name": "collector",
+  "version": "v0.1.0",
+  "homepage": "https://github.com/tbremer/collector",
+  "authors": [
+    "Tom Bremer <tom@tbremer.com>"
+  ],
+  "description": "Collector.js is a highly extendible mostly read-only Query Library similar to jQuery or Zepto.",
+  "main": "dist/collector.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "dom",
+    "query",
+    "jquery",
+    "zepto",
+    "browser",
+    "query"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
