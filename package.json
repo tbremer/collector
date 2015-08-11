@@ -1,5 +1,5 @@
 {
-  "name": "dom-collector",
+  "name": "collectorjs",
   "version": "0.1.0",
   "description": "Super extendible, light weight implementation of jQuery / Zepto.",
   "scripts": {
