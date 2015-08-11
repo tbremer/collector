@@ -59,7 +59,7 @@ gulp.task('watch', function() {
  */
 gulp.task('scripts', function () {
   return gulp.src(paths.scripts)
-    .pipe(concat(`${PKG.name}.js`))
+    .pipe(concat(`collector.js`))
     .pipe(babel())
     .on('error', swallowError)
     .pipe(gulp.dest('dist/'));
@@ -67,7 +67,7 @@ gulp.task('scripts', function () {
 
 gulp.task('uglify', function () {
   return gulp.src(paths.scripts)
-    .pipe(concat(`${PKG.name}-${PKG.version}.min.js`))
+    .pipe(concat(`collector.${PKG.version}.min.js`))
     .pipe(babel())
     .pipe(uglify())
     .on('error', swallowError)

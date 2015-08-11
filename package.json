@@ -5,7 +5,7 @@
   "scripts": {
     "doc": "./node_modules/.bin/docco src/*.js",
     "pretest": "./node_modules/.bin/gulp test",
-    "test": "./node_modules/.bin/mocha-phantomjs tests/runner.html"
+    "test": "./node_modules/.bin/mocha-phantomjs tests/index.html"
   },
   "repository": {
     "type": "git",
