@@ -1,6 +1,6 @@
 {
   "name": "dom-collector",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Super extendible, light weight implementation of jQuery / Zepto.",
   "scripts": {
     "doc": "./node_modules/.bin/docco src/*.js",
