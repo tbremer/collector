@@ -1,6 +1,6 @@
 {
   "name": "collectorjs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Super extendible, light weight implementation of jQuery / Zepto.",
   "scripts": {
     "doc": "./node_modules/.bin/docco src/*.js",

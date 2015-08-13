@@ -1,6 +1,6 @@
 {
   "name": "collectorjs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "https://github.com/tbremer/collector",
   "authors": [
     "Tom Bremer <tom@tbremer.com>"
@@ -26,7 +26,7 @@
     "test",
     "tests",
     "docs",
-    "docco-templates-api",
+    "docco-template-api",
     "TODO.md"
   ]
 }
