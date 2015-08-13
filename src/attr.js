@@ -1,7 +1,7 @@
 // ## attr
 // _attr returns either null, the value the first matched element's given attribute (if that attribute is `JSON.parse()`able it will return a JSON object) or a collection_
-// **memberof** attribute api
-// **returns** Null || String || Object || Collection
+// - **memberof** attribute api
+// - **returns** Null || String || Object || Collection
 // #### example
 // ```html
 // <article id="collector-attr-basic" party="animal"></article>

@@ -32,8 +32,6 @@ let docFiles = function() {
       tests: ['tests/collector/**/*.js', 'tests/**/*.js', '!tests/test.js']
     };
 
-
-
 gulp.task('serve', function() {
   gulp.src('./')
     .pipe(webserver({

@@ -205,8 +205,8 @@
 
 // ## attr
 // _attr returns either null, the value the first matched element's given attribute (if that attribute is `JSON.parse()`able it will return a JSON object) or a collection_
-// **memberof** attribute api
-// **returns** Null || String || Object || Collection
+// - **memberof** attribute api
+// - **returns** Null || String || Object || Collection
 // #### example
 // ```html
 // <article id="collector-attr-basic" party="animal"></article>
@@ -281,6 +281,63 @@
     }
 
     return $.matches(kids, context);
+  });
+})(collector);
+
+// ## attr
+// _closest takes a context and returns a Collection containing the first matching element of the context. If no match is found it returns an empty Collection_
+// - **memberof** traversal api
+// - **returns** Collection
+//
+// #### example
+// ```html
+// <ul id="one" class="level-1">
+//   <li class="item-i">I</li>
+//   <li id="ii" class="item-ii">II
+//     <ul class="level-2">
+//       <li class="item-a">A</li>
+//       <li class="item-b">B
+//         <ul class="level-3">
+//           <li class="item-1">1</li>
+//           <li class="item-2">2</li>
+//           <li class="item-3">3</li>
+//         </ul>
+//       </li>
+//       <li class="item-c">C</li>
+//     </ul>
+//   </li>
+//   <li class="item-iii">III</li>
+// </ul>
+// ```
+// ```javascript
+// $( "li.item-a" ).closest( "ul" )
+// // [<ul class="level-2">…</ul>]
+// ```
+(function ($) {
+  $.plugin('closest', function (context) {
+    var allMatching = [];
+    this.some(function (node) {
+      var running = true;
+      while (running) {
+        var _parent = node.parentNode,
+            matches = undefined;
+
+        if (_parent.nodeType === 9) {
+          return false;
+        }
+
+        matches = $.matches(_parent, context);
+        if (matches.length > 0) {
+          running = false;
+          allMatching.push(matches[0]);
+          return true;
+        } else {
+          node = node.parentNode;
+        }
+      }
+    });
+
+    return $(allMatching[0]);
   });
 })(collector);
 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>cloest.js</title>
+  <link rel="stylesheet" href="docco.css" media="all" charset="utf-8" />
+  <script src="../dist/collector.js" charset="utf-8"></script>
+</head>
+
+
+<body class="has-navigation">
+  <header class="main-header">
+  </header>
+  
+    <nav class="main-navigation">
+    
+      
+      <a class="source" href="addClass.html">
+        <span class="title">addClass.js</span>
+      </a>
+    
+      
+      <a class="source" href="attr.html">
+        <span class="title">attr.js</span>
+      </a>
+    
+      
+      <a class="source" href="children.html">
+        <span class="title">children.js</span>
+      </a>
+    
+      
+      <a class="source" href="cloest.html">
+        <span class="title">cloest.js</span>
+      </a>
+    
+      
+      <a class="source" href="collector.html">
+        <span class="title">collector.js</span>
+      </a>
+    
+      
+      <a class="source" href="find.html">
+        <span class="title">find.js</span>
+      </a>
+    
+      
+      <a class="source" href="hasClass.html">
+        <span class="title">hasClass.js</span>
+      </a>
+    
+      
+      <a class="source" href="html.html">
+        <span class="title">html.js</span>
+      </a>
+    
+      
+      <a class="source" href="removeClass.html">
+        <span class="title">removeClass.js</span>
+      </a>
+    
+      
+      <a class="source" href="text.html">
+        <span class="title">text.js</span>
+      </a>
+    
+    </nav>
+  
+
+  <article class="page-content">
+    <figure class="background"></figure>
+    
+    
+    <section class="content-block cf">
+      
+      <aside class="content-block__documentation ">
+        <h2 id="attr">attr</h2>
+<p><em>closest takes a context and returns a Collection containing the first matching element of the context. If no match is found it returns an empty Collection</em></p>
+<ul>
+<li><strong>memberof</strong> traversal api</li>
+<li><strong>returns</strong> Collection</li>
+</ul>
+<h4 id="example">example</h4>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"one"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"level-1"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-i"</span>&gt;</span>I<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"ii"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-ii"</span>&gt;</span>II
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"level-2"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-b"</span>&gt;</span>B
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"level-3"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item-iii"</span>&gt;</span>III<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-javascript">$( <span class="hljs-string">"li.item-a"</span> ).closest( <span class="hljs-string">"ul"</span> )
+<span class="hljs-comment">// [&lt;ul class="level-2"&gt;…&lt;/ul&gt;]</span>
+</code></pre>
+
+      </aside>
+      
+      
+      <code class="content-block__code">
+        <div class='highlight'><pre>(($) =&gt; {
+  $.plugin(<span class="hljs-string">'closest'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-keyword">let</span> allMatching = [];
+    <span class="hljs-keyword">this</span>.some((node) =&gt; {
+      <span class="hljs-keyword">let</span> running = <span class="hljs-literal">true</span>;
+      <span class="hljs-keyword">while</span>(running) {
+        <span class="hljs-keyword">let</span> parent = node.parentNode, matches;
+
+        <span class="hljs-keyword">if</span> (parent.nodeType === <span class="hljs-number">9</span>) {
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+
+        matches = $.matches(parent, context);
+        <span class="hljs-keyword">if</span> (matches.length &gt; <span class="hljs-number">0</span>) {
+          running = <span class="hljs-literal">false</span>;
+          allMatching.push(matches[<span class="hljs-number">0</span>]);
+          <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">else</span> {
+          node = node.parentNode;
+        }
+      }
+    });
+
+    <span class="hljs-keyword">return</span> $(allMatching[<span class="hljs-number">0</span>]);
+  });
+})(collector);</pre></div>
+      </code>
+      
+      </section>
+      
+  </article>
+
+  <script>
+    var nodes = $('.source');
+    var currPage = new RegExp(location.pathname.split('/')[(location.pathname.split('/').length - 1)].split('.')[0]);
+
+    nodes.each(function(node) {
+      if (currPage.test(node.innerText)) {
+        $(node).addClass('current-page');
+      }
+    })
+
+  </script>
+</body>
+</html>
