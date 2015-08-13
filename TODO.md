@@ -3,11 +3,10 @@
   - [x] $()
   - [x] $.extend
   - [x] addClass
-  - [ ] attr
+  - [x] attr
   - [x] children
-  - [ ] closest
+  - [x] closest
   - [x] concat
-  - [ ] css
   - [ ] data
   - [x] each || forEach
   - [x] filter
